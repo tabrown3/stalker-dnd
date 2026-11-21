@@ -114,14 +114,20 @@ Header meaning, as annotated in the source:
 ### Rules stated in the source, with the user's clarifications
 
 1. **Attack roll:** "Roll to see if AC is beat." **DMG roll:** "Roll to see damage."
-2. **AP:** AC is reduced by the ammo's AP value if the target is armored.
+2. **AP [CONFIRMED 2026-11-21]:** the AP value comes from the **weapon** table's
+   `Rnd AP` column (so the 9A91 uses 5), and it **only applies when the loaded
+   ammo is the AP variant**. Normal and hollow-point rounds have no AP. Per the
+   header, AP is removed from the target's AC if the target is armored; per the
+   armor rules, AP rounds also add AP damage (see below).
 3. **Range modifier (revised 2026-11-21):** "When in CQB Range +2 to hit, when
    beyond 100m it is +0, when beyond range completely -3, optics modify this."
    This replaces the old +2 / +0 / -1 rule that the user had confirmed.
-   **[GUESS]** reading: +2 at 100m or less, +0 beyond 100m up to the weapon's max
-   range, -3 beyond max range. **[OPEN]** Is CQB range 100m for every weapon? Does
-   "beyond range completely" mean past max or past effective range (and is the
-   effective-range number still used)? How do optics modify it?
+   **[CONFIRMED, provisional]** CQB range is **5m** for every weapon for now (to
+   match D&D), subject to change. Outside CQB the modifier is +0 until the target
+   is beyond the weapon's range. So: **+2 at 5m or less, +0 beyond 5m, -3 beyond
+   the weapon's range.**
+   **[OPEN]** Does "beyond range completely" mean past max or past effective range
+   (and is the effective-range number still used)? How do optics modify it?
 4. **Fire mode:** single shot **+1**, burst **+0**, full auto **-1** to hit.
 5. **Rounds that hit [CONFIRMED]:** half the *remainder* (the amount by which the
    roll beats the AC), rounded down. In symbols: `roundsHit = floor((roll - effectiveAC) / 2)`.
@@ -145,49 +151,75 @@ Header meaning, as annotated in the source:
 > Armor protects against a percentage of damage. Additionally, it increases AC
 > depending on level.
 
-My understanding, still partly unresolved:
+Clarifications from the user (2026-11-21):
 
-- Armor reduces damage by its `Prot` percentage for the matching damage type
-  (Phys for bullets) **[GUESS]**.
-- Armor also raises the wearer's AC depending on level. The sheet now gives AC
-  per level (section 6): Base 10, II 11, IIIA 12, III 13, III+ 14, IV 15.
-  **[GUESS]** These are the wearer's total AC, not a bonus added to 10.
-- The half-damage and 25%-removed clauses depend on what "equivalent" ammo means.
-  **[GUESS]** Equivalent ammo is the calibers listed under the armor's own level in
-  the tier grid. **[OPEN #5]** Still not stated in words, and it is unclear how
-  ammo from a lower or higher tier is treated.
+- **AC [CONFIRMED]:** the AC row (section 6) is the wearer's **total** AC:
+  Base 10 (unarmored), II 11, IIIA 12, III 13, III+ 14, IV 15.
+- **Multiple pieces [CONFIRMED, provisional]:** for now, the wearer's AC is the AC
+  of their highest-level armor piece. AC does not stack.
+- **Ammo tier [CONFIRMED]:** each caliber's tier is the column it sits under in the
+  tier grid (section 6), and it is compared with the armor's level.
+  - **Lower-tier ammo** than the armor: dice damage is **halved, rounded up**.
+  - **Same-tier ("equivalent") ammo:** the armor removes 25% of the dice damage,
+    rounding the removed amount up (from the source).
+  - **Higher-tier ammo** than the armor, including all Undefendable ammo: **full**
+    dice damage.
+- **Prot % [CONFIRMED]:** applied **after** the halving or 25% step.
+- **Added after armor [CONFIRMED]:** velocity, hollow-point +4, and AP damage
+  (AP rounds only) are added after the armor steps, so armor never reduces them.
+- **AP damage [CONFIRMED]:** the amount is the weapon's `Rnd AP`. It is not
+  halved.
 
-### My draft attack pipeline (a **[GUESS]** assembled from the above)
+Still unresolved:
+
+- **[GUESS]** Prot uses the `Phys Prot` column for bullets, taken from the same
+  highest-level piece used for AC. **[OPEN]** Rounding for the Prot reduction;
+  this document assumes the removed amount rounds up, like the 25% rule.
+- **[OPEN]** The AP variant row has `+AP 4`. Does that add to the weapon's
+  `Rnd AP` (e.g. AK-74 AP rounds = 4 + 4 = 8), or is it just a description?
+- **[OPEN]** Do AP rounds add AP damage against an unarmored target? (The AC
+  reduction applies only to armored targets.)
+- **[GUESS]** The armor level compared against ammo tier is the same
+  highest-level piece used for AC. Masks and the OZK suit have no level, so a
+  target wearing only those counts as unarmored.
+
+### Draft attack pipeline (mostly confirmed; remaining guesses marked)
 
 ```
-1. targetAC        = AC_BY_LEVEL[armor.level] or 10 if unarmored   # total AC [GUESS]
-2. effectiveAC     = targetAC - ammo.AP   (only if armored)
-3. toHit           = d20 + rangeMod + fireModeMod + gpmgPenalty + (ability/skill mods?)
-4. margin          = toHit - effectiveAC
-5. roundsHit       = clamp(floor(margin / 2), 0, roundsFired)
-6. per-round dmg   = roll(ammo dice) + weapon.velocity + variantDMG
-7. armor           = reduce by Prot% / equivalence rules    # [OPEN #5]
-8. total           = sum over roundsHit
-9. suppression     = rounds fired that could not hit        # [GUESS]
+1. armorLevel  = highest level among worn pieces, or none (unarmored)     # [CONFIRMED, provisional]
+2. targetAC    = AC_BY_LEVEL[armorLevel], or 10 if unarmored               # [CONFIRMED]
+3. ap          = weapon.RndAP if ammo is AP variant, else 0                # [CONFIRMED]; + variant +4? [OPEN]
+4. effectiveAC = targetAC - ap   (only if armored)
+5. rangeMod    = +2 if <= 5m, -3 if beyond weapon range, else +0           # [CONFIRMED, provisional]
+6. toHit       = d20 + rangeMod + fireModeMod + gpmgPenalty + (ability/skill mods?)
+7. margin      = toHit - effectiveAC
+8. roundsHit   = clamp(floor(margin / 2), 0, roundsFired)
+   For each round that hits:
+9.   dice      = roll(ammo dice)
+10.  tier step = compare ammo tier with armorLevel (skip if unarmored):   # [CONFIRMED]
+                   lower  -> ceil(dice / 2)
+                   equal  -> dice - ceil(dice * 0.25)
+                   higher -> dice   (all Undefendable ammo)
+11.  Prot step = afterTier - ceil(afterTier * physProt / 100)              # order [CONFIRMED]; column + rounding [GUESS]
+12.  round dmg = afterProt + weapon.velocity + (hollow-point ? 4 : 0) + ap # [CONFIRMED]; ap vs unarmored [OPEN]
+13. total      = sum over roundsHit
+14. suppression = rounds fired that could not hit                          # [GUESS]
 ```
 
 ### Open questions on the pipeline [OPEN]
 
-- Are the AC-by-level values total AC (unarmored = Base 10)? Does a mask, which
-  has no level, change AC? Does the attacker add ability or proficiency
-  modifiers to the roll?
+- Does the attacker add ability or proficiency modifiers to the roll?
 - Does "beats AC" mean strictly greater or greater-or-equal? What happens at a
   margin of 0 or 1 (where `floor(margin/2)` is 0)? Does a hit guarantee at least
   one round?
 - Is `roundsHit` capped at rounds fired? Are the rounds fired chosen by the
   player (up to the per-turn cap)?
 - Are damage dice rolled per round or once per attack? Is velocity added per
-  round or once per attack?
-- Is the armor percentage applied before or after velocity and variant bonuses?
-  What rounding applies?
+  round or once per attack? (The pipeline above assumes per round.)
 - Natural 1 and natural 20 rules? Critical hits?
-- How do multiple worn pieces (mask plus helmet plus body armor) combine? Which
-  piece's `Prot` applies, and does AC stack? Is there hit location?
+- With multiple worn pieces (mask plus helmet plus body armor), AC comes from the
+  highest-level piece (provisional). Which piece's `Prot` applies? Is there hit
+  location?
 - Which rounds count as "guaranteed to miss" for suppression? (My guess: rounds
   fired in excess of `roundsHit`, or all rounds on a miss.)
 - Rad, Psi, Chem, Elec, and Thermal protection are presumably for hazards,
@@ -218,7 +250,9 @@ Damage written with `+` (source uses `/`). Value is per round, in TK.
 
 ### Variants (header in source: "Variants / PLUS / PLUS / PLUS")
 
-These are additive modifiers on top of the base round **[GUESS: flat adds]**.
+A round is normal, AP, or hollow-point. **[CONFIRMED]** AP rounds enable the
+weapon's `Rnd AP` (section 3); hollow-point adds +4 damage after armor.
+**[OPEN]** Whether the AP variant's `+AP 4` adds to the weapon's `Rnd AP`.
 
 | Variant | +DMG | +AP | +Value (TK) |
 |---|---|---|---|
@@ -331,9 +365,10 @@ Undefendable, IV, III+, III, IIIA, II, Base; I have only reversed the columns):
 Every caliber in the ammo table now appears exactly once. (Before 2026-11-21,
 III+ listed 7.62x39mm a second time and 7.62x51mm was missing.)
 
-**[GUESS]** The grid says which armor tier is "equivalent" to each caliber (the
-tier designed to stop it). This is the basis for OPEN #5. **[GUESS]** The AC row
-is the wearer's total AC for that level.
+**[CONFIRMED]** The grid gives each caliber's tier, which is compared with the
+armor's level (lower tier: half damage; same tier: 25% removed; see section 3).
+**[CONFIRMED]** The AC row is the wearer's total AC for that level. For now, a
+wearer with several pieces uses the highest-level piece.
 
 ### Armor pieces
 
@@ -473,7 +508,8 @@ through, so the history is visible.
 3. ~~**7.62x51mm and 7.62x54mmR both cost 106 TK/round.**~~ **Fixed:** 7.62x54mmR
    is now 115.
 4. **9A91 AP is 5,** but every other 9x39mm weapon (and the 9x39mm ammo row) has
-   AP 6. Still present.
+   AP 6. Still present. Since AP now comes from the weapon table, this may be
+   deliberate; worth confirming.
 5. ~~**RSh-12 stowage** collapsed length larger than extended.~~ **Fixed:**
    collapsed is now N/A.
 6. **Factions without rows:** Noontide (referenced in nearly every relationship
@@ -516,9 +552,9 @@ through, so the history is visible.
 |---|---|
 | #1 meaning of the `/` in damage | **Answered:** a plus sign; dice are added together |
 | #2 "half the number that beats AC" | **Answered:** half the remainder (margin), rounded down |
-| #3 range modifier wording | **Superseded:** rule rewritten 2026-11-21 (CQB +2 / beyond 100m +0 / beyond range -3, optics modify); new wording needs confirming (section 3) |
-| #4 AC bonus per armor level | **Mostly answered:** AC row added (Base 10 to IV 15); confirm these are total AC |
-| #5 meaning of "equivalent" ammo | **Partly answered:** tier grid fixed, which suggests "equivalent" = calibers under the armor's level; lower/higher-tier handling still unstated |
+| #3 range modifier wording | **Mostly answered:** +2 within 5m (CQB, provisional), +0 beyond that, -3 beyond the weapon's range. Open: max vs effective range, and optics |
+| #4 AC per armor level | **Answered:** AC row is total AC (Base 10 to IV 15); with several pieces, use the highest-level piece (provisional) |
+| #5 meaning of "equivalent" ammo | **Answered:** tier = grid column vs armor level. Lower: half (round up). Same: 25% removed (round up). Higher: full. Then Prot %, then add velocity, hollow-point and AP damage (weapon `Rnd AP`, AP rounds only) |
 | #6 Prot values are percentages | **Answered:** yes |
 
 Next steps, in order:
@@ -529,5 +565,6 @@ Next steps, in order:
 2. Build the converter, schemas, and validator described in section 1.
 3. Write the worked-example attack document (about 10 cases) with the friend,
    which resolves most of the open pipeline questions in section 3 at once.
-4. Confirm the AC row and the new range rule, resolve #5, then implement AC and
-   armor reduction in the engine.
+4. The armor pipeline in section 3 is complete enough to implement now. Keep
+   the remaining guesses (Prot column and rounding, variant +4 AP, AP damage vs
+   unarmored targets) as clearly labeled settings so they are easy to change.
