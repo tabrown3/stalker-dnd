@@ -4,11 +4,13 @@ Working notes on a companion app for a friend's D&D-like tabletop adaptation of
 *S.T.A.L.K.E.R. 2: Heart of Chornobyl*. This file records my reading of the
 source material and the planning discussion so far. **Nothing has been built.**
 The source is the Google Sheet "STALKER DND" (tab "Rules & Function", range
-A1:AM81), owned by the rules author and shared view-only. The tables below were
-first transcribed by hand from pasted CSV. On 2026-11-20 they were checked cell by
-cell against a CSV export of the sheet, and every value matched. That export is
-saved at `data/source/stalker-dnd-sheet.csv` and is unedited. Spelling
-corrections made in transcription are listed in section 9.
+A1:AM79), owned by the rules author and shared view-only. The tables below were
+first transcribed by hand from pasted CSV and checked cell by cell against a CSV
+export on 2026-11-20. On 2026-11-21 the author revised the sheet (typo fixes, data
+fixes, an AC-by-level row, and a new range rule), and this document was updated
+to match the new export. That export is saved, unedited, at
+`data/source/stalker-dnd-sheet.csv`. Remaining source typos that the tables
+silently correct are listed in section 9.
 
 Conventions in this document:
 
@@ -67,8 +69,9 @@ A script to split the CSV into `weapons.json`, `ammo.json`, `armor.json`,
 - Ranges normalized to `{effective, max}` in meters, with an explicit note field
   for the Stechkin's stock range.
 - Faction names normalized to IDs ("Mercs" and "Mercenaries" become one ID).
-- Open items #4 and #5 (below) recorded as `TODO` entries; the AC-bonus and
-  armor-matching steps stay out of the engine until answered.
+- AC by armor level read from the sheet's AC row (section 6).
+- Open item #5 (below) recorded as a `TODO` entry; the armor-matching damage
+  step stays out of the engine until answered.
 
 ---
 
@@ -91,8 +94,10 @@ Rules and notes sit below and between the tables:
 - **Combat rules** (section 3): column A, rows 65–70, under the weapon table.
 - **Glossary:** "Attack Roll" / "DMG Roll" in O62 and O64, definitions in P.
 - **Armor Rules paragraph:** N67.
-- **Ammo-to-armor-tier grid** (section 6): R67:W71, under the armor columns.
-- **`1gp = 10TK`:** N72. **DELTA language list:** M73:M81.
+- **Ammo-to-armor-tier grid** (section 6): R67:X71, under the armor columns.
+  Column X is a "Base" (no armor) column with no calibers.
+- **AC by armor level** (section 6): row 72, label "AC" in Q72, values in S72:X72.
+- **`1gp = 10TK`:** N72. **DELTA language list:** M71:M79.
 
 Header meaning, as annotated in the source:
 
@@ -110,14 +115,20 @@ Header meaning, as annotated in the source:
 
 1. **Attack roll:** "Roll to see if AC is beat." **DMG roll:** "Roll to see damage."
 2. **AP:** AC is reduced by the ammo's AP value if the target is armored.
-3. **Range modifier [CONFIRMED]:** within proper range **+2** to hit, "at" range
-   **+0**, beyond **-1**. Confirmed reading: +2 within effective range, +0 up to
-   max range, -1 beyond.
+3. **Range modifier (revised 2026-11-21):** "When in CQB Range +2 to hit, when
+   beyond 100m it is +0, when beyond range completely -3, optics modify this."
+   This replaces the old +2 / +0 / -1 rule that the user had confirmed.
+   **[GUESS]** reading: +2 at 100m or less, +0 beyond 100m up to the weapon's max
+   range, -3 beyond max range. **[OPEN]** Is CQB range 100m for every weapon? Does
+   "beyond range completely" mean past max or past effective range (and is the
+   effective-range number still used)? How do optics modify it?
 4. **Fire mode:** single shot **+1**, burst **+0**, full auto **-1** to hit.
 5. **Rounds that hit [CONFIRMED]:** half the *remainder* (the amount by which the
    roll beats the AC), rounded down. In symbols: `roundsHit = floor((roll - effectiveAC) / 2)`.
-6. **LMGs:** -2 to hit when not mounted.
+6. **GPMGs:** -2 to hit when not mounted. (Changed from "LMGs" on 2026-11-21, so
+   it now applies to the PKM and no longer to the RPK-74/RPK-74M.)
 7. **Rounds per turn:** semi-auto 6 max; burst and full auto 30 max; LMG 40 max.
+   **[OPEN]** Does the GPMG (PKM) also get the 40-round LMG cap?
 8. **Suppression:** rounds guaranteed to miss provide suppression, causing all
    enemies except fanatics (Monolith) and tanks (Pseudo-Giant) to take cover or
    temporarily flee.
@@ -138,17 +149,20 @@ My understanding, still partly unresolved:
 
 - Armor reduces damage by its `Prot` percentage for the matching damage type
   (Phys for bullets) **[GUESS]**.
-- Armor also raises the wearer's AC by an amount that depends on armor level.
-  **[OPEN #4]** The AC bonus per level is not given anywhere.
+- Armor also raises the wearer's AC depending on level. The sheet now gives AC
+  per level (section 6): Base 10, II 11, IIIA 12, III 13, III+ 14, IV 15.
+  **[GUESS]** These are the wearer's total AC, not a bonus added to 10.
 - The half-damage and 25%-removed clauses depend on what "equivalent" ammo means.
-  **[OPEN #5]** The user will get back on this.
+  **[GUESS]** Equivalent ammo is the calibers listed under the armor's own level in
+  the tier grid. **[OPEN #5]** Still not stated in words, and it is unclear how
+  ammo from a lower or higher tier is treated.
 
 ### My draft attack pipeline (a **[GUESS]** assembled from the above)
 
 ```
-1. targetAC        = baseAC + armorACBonus(level)           # [OPEN #4]
+1. targetAC        = AC_BY_LEVEL[armor.level] or 10 if unarmored   # total AC [GUESS]
 2. effectiveAC     = targetAC - ammo.AP   (only if armored)
-3. toHit           = d20 + rangeMod + fireModeMod + lmgPenalty + (ability/skill mods?)
+3. toHit           = d20 + rangeMod + fireModeMod + gpmgPenalty + (ability/skill mods?)
 4. margin          = toHit - effectiveAC
 5. roundsHit       = clamp(floor(margin / 2), 0, roundsFired)
 6. per-round dmg   = roll(ammo dice) + weapon.velocity + variantDMG
@@ -159,8 +173,9 @@ My understanding, still partly unresolved:
 
 ### Open questions on the pipeline [OPEN]
 
-- What AC does an unarmored target have, and does the attacker add ability or
-  proficiency modifiers to the roll?
+- Are the AC-by-level values total AC (unarmored = Base 10)? Does a mask, which
+  has no level, change AC? Does the attacker add ability or proficiency
+  modifiers to the roll?
 - Does "beats AC" mean strictly greater or greater-or-equal? What happens at a
   margin of 0 or 1 (where `floor(margin/2)` is 0)? Does a hit guarantee at least
   one round?
@@ -189,7 +204,7 @@ Damage written with `+` (source uses `/`). Value is per round, in TK.
 | 5.45x39mm | 1d20+1d10 | 4 | 23 |
 | 5.56x45mm | 2d20 | 4 | 33 |
 | 7.62x51mm | 3d20 | 7 | 106 |
-| 7.62x54mmR | 3d20 | 9 | 106 |
+| 7.62x54mmR | 3d20 | 9 | 115 |
 | 12.7x55mm | 4d20 | 12 | 150 |
 | 9x19mm | 1d20 | 2 | 12 |
 | 9x18mm | 1d20 | 1 | 4 |
@@ -259,7 +274,7 @@ Range is `effective / max`. Stowage is `extended / collapsed`.
 | 34 | Browning HP | 9x19mm | Pistol | 2800 | 2 | 1d20 | 2 | 25m/50m | 0.91 kg | 198mm / N/A |
 | 35 | M1911 | .45 ACP | Pistol | 5500 | 1 | 1d20+1d6 | 3 | 25m/50m | 1.10 kg | 219mm / N/A |
 | 36 | M9 | 9x19mm | Pistol | 3200 | 2 | 1d20 | 2 | 25m/50m | 0.95 kg | 217mm / N/A |
-| 37 | RSh-12 | 12.7x55mm | Revolver | 10336 | 1 | 4d20 | 12 | 25m/100m | 2.20 kg | 357mm / 462mm |
+| 37 | RSh-12 | 12.7x55mm | Revolver | 10336 | 1 | 4d20 | 12 | 25m/100m | 2.20 kg | 357mm / N/A |
 | 38 | Stechkin | 9x18mm | Machine Pistol | 14000 | 2 | 1d20 | 1 | 25m/50m (200m w/ stock) | 1.02 kg | 225mm / N/A |
 | 39 | USP-45 | .45 ACP | Pistol | 6000 | 1 | 1d20+1d6 | 3 | 25m/50m | 0.79 kg | 200mm / N/A |
 | 40 | Glock-17 | 9x19mm | Pistol | 3500 | 2 | 1d20 | 2 | 25m/50m | 0.63 kg | 204mm / N/A |
@@ -297,27 +312,28 @@ Sex-based character bonuses (found beside the weapon table, not tied to weapons)
 
 ### Armor levels and the ammo-to-tier grid
 
-Levels, lowest to highest protection: **II, IIIA, III, III+, IV, Undefendable**
-(`Undefendable` appears as a column in the grid, not as armor). Pieces with
-level `N/A` (all nine masks and the OZK suit) have no level and presumably give no
-AC bonus **[GUESS]**.
+Levels, lowest to highest protection: **Base (no armor), II, IIIA, III, III+, IV,
+Undefendable** (`Base` and `Undefendable` appear as grid columns, not as armor
+levels). Pieces with level `N/A` (all nine masks and the OZK suit) have no level
+and presumably leave AC unchanged **[GUESS]**.
 
-The grid stacks calibers vertically under each level. Reconstructed from the
-column positions:
+The grid stacks calibers vertically under each level, with the sheet's AC row
+beneath it. Reconstructed from the column positions (the source's order is
+Undefendable, IV, III+, III, IIIA, II, Base; I have only reversed the columns):
 
-| II | IIIA | III | III+ | IV | Undefendable |
-|---|---|---|---|---|---|
-| 9x19mm | .45 ACP | 5.45x39mm | 7.62x54mmR | 9x39mm | 12.7x55mm |
-| 9x18mm | 12x70mm | 5.56x45mm | 7.62x39mm | 6.8x51mm | PG-7VL |
-| | | 7.62x39mm (see below) | | | 72.5mm Rocket |
+| | Base | II | IIIA | III | III+ | IV | Undefendable |
+|---|---|---|---|---|---|---|---|
+| Calibers | | 9x19mm | .45 ACP | 5.45x39mm | 7.62x54mmR | 9x39mm | 12.7x55mm |
+| | | 9x18mm | 12x70mm | 5.56x45mm | 7.62x51mm | 6.8x51mm | PG-7VL |
+| | | | | 7.62x39mm | | | 72.5mm Rocket |
+| **AC** | **10** | **11** | **12** | **13** | **14** | **15** | — |
 
-**Anomaly:** 7.62x39mm appears twice (III+ and III) and 7.62x51mm appears
-nowhere, even though it is a common caliber. My **[GUESS]** is that the III entry
-should be 7.62x51mm. The source's header order is Undefendable, IV, III+, III,
-IIIA, II; I have only reordered the columns.
+Every caliber in the ammo table now appears exactly once. (Before 2026-11-21,
+III+ listed 7.62x39mm a second time and 7.62x51mm was missing.)
 
 **[GUESS]** The grid says which armor tier is "equivalent" to each caliber (the
-tier designed to stop it). This is the basis for OPEN #5.
+tier designed to stop it). This is the basis for OPEN #5. **[GUESS]** The AC row
+is the wearer's total AC for that level.
 
 ### Armor pieces
 
@@ -411,10 +427,10 @@ operating base". Each faction also grants +1 to one ability and +1 to one skill
 | Faction | Allies | Neutral | Enemies |
 |---|---|---|---|
 | IPSF | Malachite, Corps | Ward, SIRCAA, Spark | Loners, Duty, Freedom, Noontide, Bandits, Mercs |
-| Ward | SIRCAA | Loners, Duty, Malachite, Corps, IPSF | Spark, Noontide, Freedom, Bandits, Mercs |
+| Ward | SIRCAA | Loners, Duty, Malachite, IPSF | Spark, Noontide, Freedom, Bandits, Mercs, Corps |
 | Mercenaries | //CLASSIFIED// | Bandits, Spark, Duty, Malachite, Freedom, Loners, Noontide | IPSF, Ward, SIRCAA |
 | Duty | N/A | Loners, Malachite, Spark, Ward, SIRCAA, Noontide, Corps | IPSF, Bandits, Freedom, Mercs |
-| Freedom | Spark, IPSF | Loners, Mercs, Malachite, Ward, SIRCAA, Noontide, Corps | Duty, Bandits |
+| Freedom | Spark | Loners, Mercs, Malachite, Ward, SIRCAA, Noontide, Corps | Duty, Bandits, IPSF |
 | Corps | N/A | Duty, Freedom, Loners, IPSF, Noontide, Mercs, SIRCAA, Spark, Malachite | Bandits, Ward |
 | Malachite | Spark, IPSF | Duty, Freedom, Loners, Noontide, Mercs, SIRCAA, Corps | Bandits, Ward |
 | SIRCAA | Ward | Duty, Freedom, Loners, Noontide, Mercs, Corps, Malachite, IPSF | Spark, Bandits |
@@ -448,27 +464,39 @@ Clear Sky at war with Ward.
 
 ## 9. Data problems found (for the validator)
 
-1. **Tier grid:** 7.62x39mm listed twice, 7.62x51mm missing (section 6).
+Status as of the 2026-11-21 export. Items the author fixed are kept, struck
+through, so the history is visible.
+
+1. ~~**Tier grid:** 7.62x39mm listed twice, 7.62x51mm missing.~~ **Fixed.**
 2. **SSP-100M thermal protection is 97.** Neighbors are 42 to 46. Likely a typo.
-3. **7.62x51mm and 7.62x54mmR both cost 106 TK/round** (possible copy-paste).
-4. **9A91 AP is 5,** but every other 9x39mm weapon (and the 9x39mm ammo row) has AP 6.
-5. **RSh-12 stowage** is `357mm / 462mm`: collapsed length is larger than extended.
+   Still present.
+3. ~~**7.62x51mm and 7.62x54mmR both cost 106 TK/round.**~~ **Fixed:** 7.62x54mmR
+   is now 115.
+4. **9A91 AP is 5,** but every other 9x39mm weapon (and the 9x39mm ammo row) has
+   AP 6. Still present.
+5. ~~**RSh-12 stowage** collapsed length larger than extended.~~ **Fixed:**
+   collapsed is now N/A.
 6. **Factions without rows:** Noontide (referenced in nearly every relationship
-   list) and Monolith (referenced by armor and by the suppression rule).
-7. **Relationships are not symmetric.** Examples: IPSF lists Freedom as an
-   enemy but Freedom lists IPSF as an ally; IPSF lists Corps as an ally but Corps
-   lists IPSF as neutral; Ward lists Corps as neutral but Corps lists Ward as an
-   enemy. **[OPEN]** Is that deliberate (directional reputation) or a data error?
-8. **Naming inconsistencies and typos** (silently corrected in the tables above):
-   "Mercs" vs "Mercenaries"; "Freedon" in the IPSF enemy list; "Internation"
-   for SIRCAA nationality; "Exclusivley" for Corps nationality; the weapon name
-   "Three-Line RIfle" (capital I). Typos in the faction descriptions ("loose",
-   "thoguht hey", "brazon", "bringin") do not affect data.
+   list) and Monolith (referenced by armor and by the suppression rule). Still
+   present.
+7. **Relationships are not symmetric.** Two were fixed (Freedom now lists IPSF
+   as an enemy; Ward now lists Corps as an enemy). Five remain:
+   - IPSF lists Corps as an ally; Corps lists IPSF as neutral.
+   - Duty lists Mercs as an enemy; Mercenaries list Duty as neutral.
+   - Ward lists Freedom as an enemy; Freedom lists Ward as neutral.
+   - Malachite lists Ward as an enemy; Ward lists Malachite as neutral.
+   - Mercenaries list SIRCAA as an enemy; SIRCAA lists Mercs as neutral.
+
+   **[OPEN]** Deliberate (directional reputation) or data errors?
+8. **Naming inconsistencies and typos.** Fixed: "Freedon", "Internation",
+   "Exclusivley", "Three-Line RIfle". Remaining: "Mercs" vs "Mercenaries";
+   typos in the faction descriptions ("bringin", "brazon", "loose",
+   "thoguht hey", a missing space in "facade.They"), which do not affect data.
 9. **Multi-valued fields:** Berill-5M faction is `IPSF and Corps`; relationship
-   cells are comma lists with a trailing comma on Spark's enemies.
+   cells are comma lists. (Spark's trailing comma is fixed.)
 10. **Free text in numeric fields:** Stechkin range `25m/50m (200m w/ stock)`;
-    ranges with thousands separators (`"1,000m"`); trailing spaces on exactly
-    four values (`II ` for 6B47 Helmet, `The Dead City `, `Exclusivley Ukrainian `,
+    ranges with thousands separators (`"1,000m"`); trailing spaces on four
+    values (`II ` for 6B47 Helmet, `The Dead City `, `Exclusively Ukrainian `,
     `Enerhetyk `). Stowage cells also carry inch conversions, e.g.
     `943mm (37.1in)/700mm (27.6in)`, which the tables above drop.
 11. **Possible observation:** RPG-7V1's value (53125) equals 50000 plus the
@@ -477,7 +505,8 @@ Clear Sky at war with Ward.
     which weakens this. Pure speculation **[GUESS]**.
 12. **Weapon vs. ammo consistency:** each weapon repeats its ammo's Dmg and AP.
     The validator should assert they match (finding #4 above came from this check).
-    A programmatic check on 2026-11-20 confirmed 9A91 is the only mismatch.
+    Programmatic checks on 2026-11-20 and 2026-11-21 confirmed 9A91 is the only
+    mismatch.
 
 ---
 
@@ -487,9 +516,9 @@ Clear Sky at war with Ward.
 |---|---|
 | #1 meaning of the `/` in damage | **Answered:** a plus sign; dice are added together |
 | #2 "half the number that beats AC" | **Answered:** half the remainder (margin), rounded down |
-| #3 range modifier wording | **Answered:** my reading (+2 / +0 / -1) is correct |
-| #4 AC bonus per armor level | **Pending:** the user will get back; record as TODO |
-| #5 meaning of "equivalent" ammo | **Pending:** the user will get back; record as TODO |
+| #3 range modifier wording | **Superseded:** rule rewritten 2026-11-21 (CQB +2 / beyond 100m +0 / beyond range -3, optics modify); new wording needs confirming (section 3) |
+| #4 AC bonus per armor level | **Mostly answered:** AC row added (Base 10 to IV 15); confirm these are total AC |
+| #5 meaning of "equivalent" ammo | **Partly answered:** tier grid fixed, which suggests "equivalent" = calibers under the armor's level; lower/higher-tier handling still unstated |
 | #6 Prot values are percentages | **Answered:** yes |
 
 Next steps, in order:
@@ -500,4 +529,5 @@ Next steps, in order:
 2. Build the converter, schemas, and validator described in section 1.
 3. Write the worked-example attack document (about 10 cases) with the friend,
    which resolves most of the open pipeline questions in section 3 at once.
-4. Resolve #4 and #5, then implement AC and armor reduction in the engine.
+4. Confirm the AC row and the new range rule, resolve #5, then implement AC and
+   armor reduction in the engine.
