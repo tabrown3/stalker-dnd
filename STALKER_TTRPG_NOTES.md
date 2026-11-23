@@ -129,12 +129,25 @@ Header meaning, as annotated in the source:
    **[OPEN]** Does "beyond range completely" mean past max or past effective range
    (and is the effective-range number still used)? How do optics modify it?
 4. **Fire mode:** single shot **+1**, burst **+0**, full auto **-1** to hit.
+   **[CONFIRMED 2026-11-22]** The shooter chooses how many rounds to fire, and
+   the fire mode follows from that number (1 round = single shot). It is not a
+   separate choice. **[CONFIRMED 2026-11-22]** 1 round = single shot, 2–6 =
+   burst, 7+ = full auto.
+   **[CONFIRMED, provisional]** Fire capability by class until the sheet gets a
+   capability column (see section 9, #13): Pistol, Shotgun, DMR and Sniper Rifle
+   are single-shot only. Every other class can fire single, burst and full auto.
 5. **Rounds that hit [CONFIRMED]:** half the *remainder* (the amount by which the
    roll beats the AC), rounded down. In symbols: `roundsHit = floor((roll - effectiveAC) / 2)`.
+   **[CONFIRMED 2026-11-22]** The to-hit roll is made **once per trigger pull**,
+   not once per bullet. A burst or full-auto pull is one roll. A semi-auto
+   weapon firing several single shots in a turn rolls once for each pull.
 6. **GPMGs:** -2 to hit when not mounted. (Changed from "LMGs" on 2026-11-21, so
    it now applies to the PKM and no longer to the RPK-74/RPK-74M.)
 7. **Rounds per turn:** semi-auto 6 max; burst and full auto 30 max; LMG 40 max.
-   **[OPEN]** Does the GPMG (PKM) also get the 40-round LMG cap?
+   Read as: a semi-auto weapon gets up to 6 trigger pulls a turn. **[GUESS]**
+   Caps count all rounds fired in the turn, across pulls. **[OPEN]** Can one
+   turn mix pulls (e.g. a burst, then single shots)? Does the GPMG (PKM) also
+   get the 40-round LMG cap?
 8. **Suppression:** rounds guaranteed to miss provide suppression, causing all
    enemies except fanatics (Monolith) and tanks (Pseudo-Giant) to take cover or
    temporarily flee.
@@ -191,18 +204,22 @@ Still unresolved:
 3. ap          = weapon.RndAP if ammo is AP variant, else 0                # [CONFIRMED]; + variant +4? [OPEN]
 4. effectiveAC = targetAC - ap   (only if armored)
 5. rangeMod    = +2 if <= 5m, -3 if beyond weapon range, else +0           # [CONFIRMED, provisional]
-6. toHit       = d20 + rangeMod + fireModeMod + gpmgPenalty + (ability/skill mods?)
-7. margin      = toHit - effectiveAC
-8. roundsHit   = clamp(floor(margin / 2), 0, roundsFired)
-   For each round that hits:
-9.   dice      = roll(ammo dice)
-10.  tier step = compare ammo tier with armorLevel (skip if unarmored):   # [CONFIRMED]
-                   lower  -> ceil(dice / 2)
-                   equal  -> dice - ceil(dice * 0.25)
-                   higher -> dice   (all Undefendable ammo)
-11.  Prot step = afterTier - ceil(afterTier * physProt / 100)              # order [CONFIRMED]; column + rounding [GUESS]
-12.  round dmg = afterProt + weapon.velocity + (hollow-point ? 4 : 0) + ap # [CONFIRMED]; ap vs unarmored [OPEN]
-13. total      = sum over roundsHit
+   For each trigger pull (one d20 per pull)                                # [CONFIRMED]
+5a.  roundsFired = chosen by the shooter for this pull                     # [CONFIRMED]
+5b.  fireModeMod = +1 if roundsFired == 1, +0 if 2-6, -1 if 7+             # [CONFIRMED]
+     (roundsFired > 1 only if the weapon can burst / full auto)            # by class [CONFIRMED, provisional]
+6.   toHit       = d20 + rangeMod + fireModeMod + gpmgPenalty + (ability/skill mods?)
+7.   margin      = toHit - effectiveAC
+8.   roundsHit   = clamp(floor(margin / 2), 0, roundsFired)
+     For each round that hits:
+9.     dice      = roll(ammo dice)
+10.    tier step = compare ammo tier with armorLevel (skip if unarmored): # [CONFIRMED]
+                     lower  -> ceil(dice / 2)
+                     equal  -> dice - ceil(dice * 0.25)
+                     higher -> dice   (all Undefendable ammo)
+11.    Prot step = afterTier - ceil(afterTier * physProt / 100)            # order [CONFIRMED]; column + rounding [GUESS]
+12.    round dmg = afterProt + weapon.velocity + (hollow-point ? 4 : 0) + ap # [CONFIRMED]; ap vs unarmored [OPEN]
+13. total      = sum over every round that hit, across all pulls this turn
 14. suppression = rounds fired that could not hit                          # [GUESS]
 ```
 
@@ -212,8 +229,7 @@ Still unresolved:
 - Does "beats AC" mean strictly greater or greater-or-equal? What happens at a
   margin of 0 or 1 (where `floor(margin/2)` is 0)? Does a hit guarantee at least
   one round?
-- Is `roundsHit` capped at rounds fired? Are the rounds fired chosen by the
-  player (up to the per-turn cap)?
+- Is `roundsHit` capped at the rounds fired on that pull? (Assumed yes.)
 - Are damage dice rolled per round or once per attack? Is velocity added per
   round or once per attack? (The pipeline above assumes per round.)
 - Natural 1 and natural 20 rules? Critical hits?
@@ -543,6 +559,11 @@ through, so the history is visible.
     The validator should assert they match (finding #4 above came from this check).
     Programmatic checks on 2026-11-20 and 2026-11-21 confirmed 9A91 is the only
     mismatch.
+13. **No fire-capability column.** The weapon table doesn't say which weapons
+    can fire bursts or full auto. The author agrees one should be added
+    (2026-11-22). Until then, capability comes from the weapon's class
+    (section 3, rule 4). When the column arrives, the converter should read it
+    and the class-based fallback should be removed.
 
 ---
 
