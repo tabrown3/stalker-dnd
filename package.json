@@ -1,0 +1,23 @@
+{
+  "name": "stalker-dnd",
+  "private": true,
+  "type": "module",
+  "description": "Companion app for a STALKER tabletop adaptation: data pipeline and rules engine.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "data": "node --disable-warning=ExperimentalWarning scripts/build-data.ts",
+    "test": "vitest run",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "csv-parse": "^7.0.3",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.11",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.2"
+  }
+}

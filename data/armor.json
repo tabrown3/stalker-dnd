@@ -1,0 +1,993 @@
+[
+  {
+    "id": "aeroprotection-mask",
+    "name": "Aeroprotection Mask",
+    "type": "Mask",
+    "level": null,
+    "factionIds": [
+      "ward"
+    ],
+    "valueTk": 3200,
+    "prot": {
+      "phys": 20,
+      "rad": 10,
+      "psi": 15,
+      "chem": 9,
+      "elec": 9,
+      "thermal": 13
+    }
+  },
+  {
+    "id": "aurora-gas-mask",
+    "name": "Aurora Gas Mask",
+    "type": "Mask",
+    "level": null,
+    "factionIds": [],
+    "valueTk": 4500,
+    "prot": {
+      "phys": 20,
+      "rad": 5,
+      "psi": 10,
+      "chem": 19,
+      "elec": 20,
+      "thermal": 18
+    }
+  },
+  {
+    "id": "sphere-08-helmet",
+    "name": "Sphere-08 Helmet",
+    "type": "Helmet",
+    "level": "IIIA",
+    "factionIds": [
+      "ipsf"
+    ],
+    "valueTk": 11000,
+    "prot": {
+      "phys": 50,
+      "rad": 16,
+      "psi": 15,
+      "chem": 13,
+      "elec": 13,
+      "thermal": 13
+    }
+  },
+  {
+    "id": "6b47-helmet",
+    "name": "6B47 Helmet",
+    "type": "Helmet",
+    "level": "II",
+    "factionIds": [],
+    "valueTk": 8500,
+    "prot": {
+      "phys": 45,
+      "rad": 16,
+      "psi": 15,
+      "chem": 10,
+      "elec": 12,
+      "thermal": 14
+    }
+  },
+  {
+    "id": "sphere-m20-mask-1-combo",
+    "name": "Sphere M20/Mask-1 Combo",
+    "type": "Helmet",
+    "level": "IIIA",
+    "factionIds": [
+      "ipsf"
+    ],
+    "valueTk": 18500,
+    "prot": {
+      "phys": 75,
+      "rad": 16,
+      "psi": 30,
+      "chem": 19,
+      "elec": 16,
+      "thermal": 18
+    }
+  },
+  {
+    "id": "gp-5-gas-mask",
+    "name": "GP-5 Gas Mask",
+    "type": "Mask",
+    "level": null,
+    "factionIds": [],
+    "valueTk": 1800,
+    "prot": {
+      "phys": 25,
+      "rad": 20,
+      "psi": 15,
+      "chem": 19,
+      "elec": 10,
+      "thermal": 13
+    }
+  },
+  {
+    "id": "gp-21-gas-mask",
+    "name": "GP-21 Gas Mask",
+    "type": "Mask",
+    "level": null,
+    "factionIds": [],
+    "valueTk": 5200,
+    "prot": {
+      "phys": 35,
+      "rad": 15,
+      "psi": 5,
+      "chem": 20,
+      "elec": 14,
+      "thermal": 14
+    }
+  },
+  {
+    "id": "shm-41-gas-mask",
+    "name": "ShM-41 Gas Mask",
+    "type": "Mask",
+    "level": null,
+    "factionIds": [],
+    "valueTk": 1500,
+    "prot": {
+      "phys": 25,
+      "rad": 20,
+      "psi": 16,
+      "chem": 19,
+      "elec": 10,
+      "thermal": 15
+    }
+  },
+  {
+    "id": "optican-gas-mask",
+    "name": "Optican Gas Mask",
+    "type": "Mask",
+    "level": null,
+    "factionIds": [],
+    "valueTk": 4200,
+    "prot": {
+      "phys": 40,
+      "rad": 5,
+      "psi": 5,
+      "chem": 20,
+      "elec": 14,
+      "thermal": 14
+    }
+  },
+  {
+    "id": "pa-10-gas-mask",
+    "name": "PA-10 Gas Mask",
+    "type": "Mask",
+    "level": null,
+    "factionIds": [],
+    "valueTk": 6800,
+    "prot": {
+      "phys": 44,
+      "rad": 13,
+      "psi": 13,
+      "chem": 19,
+      "elec": 20,
+      "thermal": 18
+    }
+  },
+  {
+    "id": "pa-7-gas-mask",
+    "name": "PA-7 Gas Mask",
+    "type": "Mask",
+    "level": null,
+    "factionIds": [
+      "ipsf"
+    ],
+    "valueTk": 6000,
+    "prot": {
+      "phys": 50,
+      "rad": 13,
+      "psi": 20,
+      "chem": 17,
+      "elec": 22,
+      "thermal": 18
+    }
+  },
+  {
+    "id": "pg-4-facehugger-gas-mask",
+    "name": "PG-4 Facehugger Gas Mask",
+    "type": "Mask",
+    "level": null,
+    "factionIds": [
+      "ward"
+    ],
+    "valueTk": 7500,
+    "prot": {
+      "phys": 40,
+      "rad": 6,
+      "psi": 7,
+      "chem": 22,
+      "elec": 19,
+      "thermal": 15
+    }
+  },
+  {
+    "id": "sphere-m20-helmet",
+    "name": "Sphere M20 Helmet",
+    "type": "Helmet",
+    "level": "IIIA",
+    "factionIds": [
+      "ipsf"
+    ],
+    "valueTk": 14000,
+    "prot": {
+      "phys": 50,
+      "rad": 16,
+      "psi": 15,
+      "chem": 13,
+      "elec": 16,
+      "thermal": 16
+    }
+  },
+  {
+    "id": "sphere-08-pa-7-combo",
+    "name": "Sphere-08/PA-7 Combo",
+    "type": "Helmet",
+    "level": "IIIA",
+    "factionIds": [
+      "ipsf"
+    ],
+    "valueTk": 16500,
+    "prot": {
+      "phys": 75,
+      "rad": 16,
+      "psi": 20,
+      "chem": 19,
+      "elec": 19,
+      "thermal": 18
+    }
+  },
+  {
+    "id": "sphere-m20-pa-7-combo",
+    "name": "Sphere M20/PA-7 Combo",
+    "type": "Helmet",
+    "level": "IIIA",
+    "factionIds": [
+      "duty"
+    ],
+    "valueTk": 19500,
+    "prot": {
+      "phys": 75,
+      "rad": 16,
+      "psi": 20,
+      "chem": 19,
+      "elec": 16,
+      "thermal": 18
+    }
+  },
+  {
+    "id": "rainfall-suit",
+    "name": "Rainfall Suit",
+    "type": "Body Armor",
+    "level": "IIIA",
+    "factionIds": [
+      "loners"
+    ],
+    "valueTk": 8000,
+    "prot": {
+      "phys": 38,
+      "rad": 30,
+      "psi": 0,
+      "chem": 8,
+      "elec": 11,
+      "thermal": 8
+    }
+  },
+  {
+    "id": "corax-suit",
+    "name": "Corax Suit",
+    "type": "Body Armor",
+    "level": "IIIA",
+    "factionIds": [
+      "loners"
+    ],
+    "valueTk": 9500,
+    "prot": {
+      "phys": 38,
+      "rad": 30,
+      "psi": 0,
+      "chem": 8,
+      "elec": 11,
+      "thermal": 9
+    }
+  },
+  {
+    "id": "marauder-suit",
+    "name": "Marauder Suit",
+    "type": "Body Armor",
+    "level": "IIIA",
+    "factionIds": [
+      "bandits"
+    ],
+    "valueTk": 7500,
+    "prot": {
+      "phys": 38,
+      "rad": 30,
+      "psi": 0,
+      "chem": 8,
+      "elec": 11,
+      "thermal": 9
+    }
+  },
+  {
+    "id": "mercenary-suit",
+    "name": "Mercenary Suit",
+    "type": "Body Armor",
+    "level": "IIIA",
+    "factionIds": [
+      "mercenaries"
+    ],
+    "valueTk": 12000,
+    "prot": {
+      "phys": 40,
+      "rad": 30,
+      "psi": 0,
+      "chem": 10,
+      "elec": 10,
+      "thermal": 8
+    }
+  },
+  {
+    "id": "mercenary-light-suit",
+    "name": "Mercenary Light Suit",
+    "type": "Body Armor",
+    "level": "II",
+    "factionIds": [
+      "mercenaries"
+    ],
+    "valueTk": 9500,
+    "prot": {
+      "phys": 40,
+      "rad": 30,
+      "psi": 0,
+      "chem": 10,
+      "elec": 10,
+      "thermal": 8
+    }
+  },
+  {
+    "id": "ozk-explorer-s-suit",
+    "name": "OZK Explorer's Suit",
+    "type": "Body Armor",
+    "level": null,
+    "factionIds": [
+      "loners"
+    ],
+    "valueTk": 6500,
+    "prot": {
+      "phys": 30,
+      "rad": 10,
+      "psi": 0,
+      "chem": 16,
+      "elec": 13,
+      "thermal": 10
+    }
+  },
+  {
+    "id": "psz-5d",
+    "name": "PSZ-5D",
+    "type": "Body Armor",
+    "level": "III",
+    "factionIds": [
+      "duty"
+    ],
+    "valueTk": 13500,
+    "prot": {
+      "phys": 46,
+      "rad": 30,
+      "psi": 0,
+      "chem": 13,
+      "elec": 13,
+      "thermal": 11
+    }
+  },
+  {
+    "id": "psz-5i",
+    "name": "PSZ-5I",
+    "type": "Body Armor",
+    "level": "III",
+    "factionIds": [
+      "spark"
+    ],
+    "valueTk": 14000,
+    "prot": {
+      "phys": 45,
+      "rad": 40,
+      "psi": 0,
+      "chem": 16,
+      "elec": 14,
+      "thermal": 16
+    }
+  },
+  {
+    "id": "psz-5v",
+    "name": "PSZ-5V",
+    "type": "Body Armor",
+    "level": "III",
+    "factionIds": [
+      "freedom"
+    ],
+    "valueTk": 13500,
+    "prot": {
+      "phys": 44,
+      "rad": 40,
+      "psi": 0,
+      "chem": 17,
+      "elec": 13,
+      "thermal": 16
+    }
+  },
+  {
+    "id": "psz-7",
+    "name": "PSZ-7",
+    "type": "Body Armor",
+    "level": "III",
+    "factionIds": [
+      "ipsf"
+    ],
+    "valueTk": 24000,
+    "prot": {
+      "phys": 42,
+      "rad": 30,
+      "psi": 0,
+      "chem": 10,
+      "elec": 8,
+      "thermal": 7
+    }
+  },
+  {
+    "id": "psz-20w-convoy",
+    "name": "PSZ-20W Convoy",
+    "type": "Body Armor",
+    "level": "III+",
+    "factionIds": [
+      "ward"
+    ],
+    "valueTk": 32000,
+    "prot": {
+      "phys": 50,
+      "rad": 40,
+      "psi": 0,
+      "chem": 14,
+      "elec": 14,
+      "thermal": 12
+    }
+  },
+  {
+    "id": "recruit-suit",
+    "name": "Recruit Suit",
+    "type": "Body Armor",
+    "level": "II",
+    "factionIds": [
+      "duty"
+    ],
+    "valueTk": 5000,
+    "prot": {
+      "phys": 24,
+      "rad": 20,
+      "psi": 0,
+      "chem": 8,
+      "elec": 8,
+      "thermal": 9
+    }
+  },
+  {
+    "id": "sunrise-suit",
+    "name": "Sunrise Suit",
+    "type": "Body Armor",
+    "level": "IIIA",
+    "factionIds": [
+      "loners"
+    ],
+    "valueTk": 11000,
+    "prot": {
+      "phys": 40,
+      "rad": 30,
+      "psi": 0,
+      "chem": 13,
+      "elec": 11,
+      "thermal": 13
+    }
+  },
+  {
+    "id": "wind-of-freedom-suit",
+    "name": "Wind of Freedom Suit",
+    "type": "Body Armor",
+    "level": "II",
+    "factionIds": [
+      "freedom"
+    ],
+    "valueTk": 10500,
+    "prot": {
+      "phys": 22,
+      "rad": 20,
+      "psi": 0,
+      "chem": 10,
+      "elec": 10,
+      "thermal": 11
+    }
+  },
+  {
+    "id": "zircon-suit",
+    "name": "Zircon Suit",
+    "type": "Body Armor",
+    "level": "III",
+    "factionIds": [
+      "monolith"
+    ],
+    "valueTk": 26000,
+    "prot": {
+      "phys": 48,
+      "rad": 40,
+      "psi": 0,
+      "chem": 13,
+      "elec": 13,
+      "thermal": 11
+    }
+  },
+  {
+    "id": "berill-5m-armored-suit",
+    "name": "Berill-5M Armored Suit",
+    "type": "Full Body Armor",
+    "level": "III+",
+    "factionIds": [
+      "ipsf",
+      "corps"
+    ],
+    "valueTk": 22000,
+    "prot": {
+      "phys": 42,
+      "rad": 30,
+      "psi": 0,
+      "chem": 10,
+      "elec": 8,
+      "thermal": 11
+    }
+  },
+  {
+    "id": "guardian-of-freedom-suit",
+    "name": "Guardian of Freedom Suit",
+    "type": "Full Body Armor",
+    "level": "III+",
+    "factionIds": [
+      "freedom"
+    ],
+    "valueTk": 21000,
+    "prot": {
+      "phys": 45,
+      "rad": 30,
+      "psi": 0,
+      "chem": 10,
+      "elec": 7,
+      "thermal": 14
+    }
+  },
+  {
+    "id": "corundum-suit",
+    "name": "Corundum Suit",
+    "type": "Full Body Armor",
+    "level": "IV",
+    "factionIds": [],
+    "valueTk": 38000,
+    "prot": {
+      "phys": 70,
+      "rad": 50,
+      "psi": 20,
+      "chem": 16,
+      "elec": 17,
+      "thermal": 20
+    }
+  },
+  {
+    "id": "psz-12v-bulat",
+    "name": "PSZ-12V Bulat",
+    "type": "Full Body Armor",
+    "level": "IV",
+    "factionIds": [
+      "freedom"
+    ],
+    "valueTk": 34000,
+    "prot": {
+      "phys": 65,
+      "rad": 50,
+      "psi": 0,
+      "chem": 16,
+      "elec": 14,
+      "thermal": 20
+    }
+  },
+  {
+    "id": "psz-9d-duty-armor",
+    "name": "PSZ-9D Duty Armor",
+    "type": "Full Body Armor",
+    "level": "IV",
+    "factionIds": [
+      "duty"
+    ],
+    "valueTk": 30000,
+    "prot": {
+      "phys": 70,
+      "rad": 40,
+      "psi": 0,
+      "chem": 16,
+      "elec": 14,
+      "thermal": 20
+    }
+  },
+  {
+    "id": "psz-9i-falcon",
+    "name": "PSZ-9I Falcon",
+    "type": "Full Body Armor",
+    "level": "IV",
+    "factionIds": [
+      "spark"
+    ],
+    "valueTk": 33000,
+    "prot": {
+      "phys": 60,
+      "rad": 50,
+      "psi": 40,
+      "chem": 23,
+      "elec": 23,
+      "thermal": 23
+    }
+  },
+  {
+    "id": "psz-9n-wolfhound",
+    "name": "PSZ-9N Wolfhound",
+    "type": "Full Body Armor",
+    "level": "IV",
+    "factionIds": [
+      "mercenaries"
+    ],
+    "valueTk": 28000,
+    "prot": {
+      "phys": 60,
+      "rad": 40,
+      "psi": 0,
+      "chem": 16,
+      "elec": 16,
+      "thermal": 20
+    }
+  },
+  {
+    "id": "seva-suit",
+    "name": "SEVA Suit",
+    "type": "Protective Suit",
+    "level": "IIIA",
+    "factionIds": [
+      "loners"
+    ],
+    "valueTk": 36000,
+    "prot": {
+      "phys": 40,
+      "rad": 60,
+      "psi": 40,
+      "chem": 32,
+      "elec": 32,
+      "thermal": 23
+    }
+  },
+  {
+    "id": "seva-d-suit",
+    "name": "SEVA-D Suit",
+    "type": "Protective Suit",
+    "level": "IIIA",
+    "factionIds": [
+      "duty"
+    ],
+    "valueTk": 40000,
+    "prot": {
+      "phys": 50,
+      "rad": 50,
+      "psi": 30,
+      "chem": 27,
+      "elec": 28,
+      "thermal": 21
+    }
+  },
+  {
+    "id": "seva-i-suit",
+    "name": "SEVA-I Suit",
+    "type": "Protective Suit",
+    "level": "IIIA",
+    "factionIds": [
+      "spark"
+    ],
+    "valueTk": 42000,
+    "prot": {
+      "phys": 50,
+      "rad": 60,
+      "psi": 40,
+      "chem": 29,
+      "elec": 29,
+      "thermal": 23
+    }
+  },
+  {
+    "id": "seva-v-suit",
+    "name": "SEVA-V Suit",
+    "type": "Protective Suit",
+    "level": "IIIA",
+    "factionIds": [
+      "freedom"
+    ],
+    "valueTk": 38000,
+    "prot": {
+      "phys": 40,
+      "rad": 70,
+      "psi": 20,
+      "chem": 29,
+      "elec": 26,
+      "thermal": 20
+    }
+  },
+  {
+    "id": "seva-m-suit",
+    "name": "SEVA-M Suit",
+    "type": "Protective Suit",
+    "level": "IIIA",
+    "factionIds": [
+      "monolith"
+    ],
+    "valueTk": 37000,
+    "prot": {
+      "phys": 50,
+      "rad": 60,
+      "psi": 40,
+      "chem": 27,
+      "elec": 26,
+      "thermal": 23
+    }
+  },
+  {
+    "id": "ssp-99-ecologist",
+    "name": "SSP-99 Ecologist",
+    "type": "Protective Suit",
+    "level": "II",
+    "factionIds": [
+      "malachite"
+    ],
+    "valueTk": 32000,
+    "prot": {
+      "phys": 20,
+      "rad": 60,
+      "psi": 25,
+      "chem": 36,
+      "elec": 30,
+      "thermal": 23
+    }
+  },
+  {
+    "id": "ssp-100-discovery",
+    "name": "SSP-100 Discovery",
+    "type": "Protective Suit",
+    "level": "IIIA",
+    "factionIds": [
+      "malachite"
+    ],
+    "valueTk": 46000,
+    "prot": {
+      "phys": 40,
+      "rad": 60,
+      "psi": 55,
+      "chem": 42,
+      "elec": 42,
+      "thermal": 42
+    }
+  },
+  {
+    "id": "ssp-100i-survey",
+    "name": "SSP-100I Survey",
+    "type": "Protective Suit",
+    "level": "III",
+    "factionIds": [
+      "spark"
+    ],
+    "valueTk": 44000,
+    "prot": {
+      "phys": 60,
+      "rad": 50,
+      "psi": 20,
+      "chem": 45,
+      "elec": 45,
+      "thermal": 46
+    }
+  },
+  {
+    "id": "ssp-100m-sircaa",
+    "name": "SSP-100M SIRCAA",
+    "type": "Protective Suit",
+    "level": "III",
+    "factionIds": [
+      "sircaa"
+    ],
+    "valueTk": 45000,
+    "prot": {
+      "phys": 40,
+      "rad": 60,
+      "psi": 55,
+      "chem": 45,
+      "elec": 45,
+      "thermal": 97
+    }
+  },
+  {
+    "id": "brummbar-exoskeleton",
+    "name": "Brummbar Exoskeleton",
+    "type": "Exoskeleton",
+    "level": "IV",
+    "factionIds": [
+      "mercenaries"
+    ],
+    "valueTk": 68000,
+    "prot": {
+      "phys": 80,
+      "rad": 60,
+      "psi": 20,
+      "chem": 34,
+      "elec": 30,
+      "thermal": 31
+    }
+  },
+  {
+    "id": "bulwark-exosuit",
+    "name": "Bulwark Exosuit",
+    "type": "Exoskeleton",
+    "level": "IV",
+    "factionIds": [
+      "freedom"
+    ],
+    "valueTk": 62000,
+    "prot": {
+      "phys": 70,
+      "rad": 70,
+      "psi": 40,
+      "chem": 29,
+      "elec": 36,
+      "thermal": 29
+    }
+  },
+  {
+    "id": "cuirass-exoskeleton",
+    "name": "Cuirass Exoskeleton",
+    "type": "Exoskeleton",
+    "level": "IV",
+    "factionIds": [
+      "duty"
+    ],
+    "valueTk": 74000,
+    "prot": {
+      "phys": 80,
+      "rad": 60,
+      "psi": 20,
+      "chem": 36,
+      "elec": 32,
+      "thermal": 33
+    }
+  },
+  {
+    "id": "diamond-exoskeleton",
+    "name": "Diamond Exoskeleton",
+    "type": "Exoskeleton",
+    "level": "IV",
+    "factionIds": [
+      "monolith"
+    ],
+    "valueTk": 82000,
+    "prot": {
+      "phys": 80,
+      "rad": 80,
+      "psi": 40,
+      "chem": 39,
+      "elec": 39,
+      "thermal": 39
+    }
+  },
+  {
+    "id": "exoskeleton",
+    "name": "Exoskeleton",
+    "type": "Exoskeleton",
+    "level": "IV",
+    "factionIds": [],
+    "valueTk": 60000,
+    "prot": {
+      "phys": 65,
+      "rad": 60,
+      "psi": 50,
+      "chem": 32,
+      "elec": 32,
+      "thermal": 23
+    }
+  },
+  {
+    "id": "liberty-exoskeleton",
+    "name": "Liberty Exoskeleton",
+    "type": "Exoskeleton",
+    "level": "IV",
+    "factionIds": [
+      "freedom"
+    ],
+    "valueTk": 76000,
+    "prot": {
+      "phys": 80,
+      "rad": 80,
+      "psi": 40,
+      "chem": 32,
+      "elec": 36,
+      "thermal": 36
+    }
+  },
+  {
+    "id": "operator-exoskeleton",
+    "name": "Operator Exoskeleton",
+    "type": "Exoskeleton",
+    "level": "IV",
+    "factionIds": [
+      "ward"
+    ],
+    "valueTk": 70000,
+    "prot": {
+      "phys": 80,
+      "rad": 70,
+      "psi": 30,
+      "chem": 34,
+      "elec": 34,
+      "thermal": 34
+    }
+  },
+  {
+    "id": "psz-21w-shturm",
+    "name": "PSZ-21W Shturm",
+    "type": "Exoskeleton",
+    "level": "IV",
+    "factionIds": [
+      "ward"
+    ],
+    "valueTk": 65000,
+    "prot": {
+      "phys": 80,
+      "rad": 75,
+      "psi": 30,
+      "chem": 34,
+      "elec": 34,
+      "thermal": 23
+    }
+  },
+  {
+    "id": "ruby-exoskeleton",
+    "name": "Ruby Exoskeleton",
+    "type": "Exoskeleton",
+    "level": "IV",
+    "factionIds": [
+      "monolith"
+    ],
+    "valueTk": 78000,
+    "prot": {
+      "phys": 75,
+      "rad": 80,
+      "psi": 20,
+      "chem": 26,
+      "elec": 36,
+      "thermal": 26
+    }
+  },
+  {
+    "id": "shield-of-duty-exoskeleton",
+    "name": "Shield of Duty Exoskeleton",
+    "type": "Exoskeleton",
+    "level": "IV",
+    "factionIds": [
+      "duty"
+    ],
+    "valueTk": 75000,
+    "prot": {
+      "phys": 75,
+      "rad": 60,
+      "psi": 20,
+      "chem": 23,
+      "elec": 22,
+      "thermal": 25
+    }
+  }
+]

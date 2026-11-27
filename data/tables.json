@@ -1,0 +1,34 @@
+{
+  "acByLevel": {
+    "base": 10,
+    "II": 11,
+    "IIIA": 12,
+    "III": 13,
+    "III+": 14,
+    "IV": 15
+  },
+  "currency": {
+    "tkPerGp": 10
+  },
+  "sourceText": {
+    "combatRules": [
+      "When in CQB Range +2 to hit, when beyond 100m it is +0, when beyond range completely -3, optics modify this",
+      "Single shot is +1, burst is +0, full is -1 to hit",
+      "When you roll to hit, half the number you get that beats the AC is the amount of rounds that hit, when uneven round down",
+      "GPMGs have a -2 to hit when not mounted",
+      "Semi-autos can fire 6 times in a turn max, bursts and full can fire 30 in a turn max, lmgs can fire 40 in a turn max",
+      "The rounds that are guaranteed to miss provide suppression, which will cause all enemies except fanatics (Monolith) and tanks (Pseudo-Giant) to take cover or temporarily flee"
+    ],
+    "armorRules": "If armor protects against an unequivalent ammo type the player takes half damage. AP variants do additional damage on top of that. If it takes damage from an equivalent ammo type, it removes 25% of that damage (if uneven it rounds up). Armor protects against a percentage of damage. Additionally, it increases AC depending on level.",
+    "glossary": [
+      {
+        "term": "Attack Roll",
+        "definition": "Roll to see if AC is beat"
+      },
+      {
+        "term": "DMG Roll",
+        "definition": "Roll to see damage"
+      }
+    ]
+  }
+}

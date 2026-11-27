@@ -1,0 +1,1575 @@
+[
+  {
+    "id": "ak-74",
+    "name": "AK-74",
+    "ammoId": "5-45x39mm",
+    "class": "Assault Rifle",
+    "valueTk": 10000,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 10
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 500,
+      "maxM": 800
+    },
+    "weightKg": 3.07,
+    "stowage": {
+      "extendedMm": 943,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "ak-74m",
+    "name": "AK-74M",
+    "ammoId": "5-45x39mm",
+    "class": "Assault Rifle",
+    "valueTk": 10000,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 10
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 500,
+      "maxM": 800
+    },
+    "weightKg": 3.4,
+    "stowage": {
+      "extendedMm": 943,
+      "collapsedMm": 700
+    }
+  },
+  {
+    "id": "aks-74",
+    "name": "AKS-74",
+    "ammoId": "5-45x39mm",
+    "class": "Assault Rifle",
+    "valueTk": 10000,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 10
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 500,
+      "maxM": 800
+    },
+    "weightKg": 2.97,
+    "stowage": {
+      "extendedMm": 943,
+      "collapsedMm": 690
+    }
+  },
+  {
+    "id": "aks-74u",
+    "name": "AKS-74U",
+    "ammoId": "5-45x39mm",
+    "class": "Carbine",
+    "valueTk": 6500,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 10
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 400,
+      "maxM": 600
+    },
+    "weightKg": 2.7,
+    "stowage": {
+      "extendedMm": 730,
+      "collapsedMm": 490
+    }
+  },
+  {
+    "id": "hk416a5",
+    "name": "HK416A5",
+    "ammoId": "5-56x45mm",
+    "class": "Assault Rifle",
+    "valueTk": 14000,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 600,
+      "maxM": 800
+    },
+    "weightKg": 2.95,
+    "stowage": {
+      "extendedMm": 810,
+      "collapsedMm": 720
+    }
+  },
+  {
+    "id": "hk417a2",
+    "name": "HK417A2",
+    "ammoId": "7-62x51mm",
+    "class": "DMR",
+    "valueTk": 28000,
+    "velocity": 4,
+    "damage": [
+      {
+        "count": 3,
+        "sides": 20
+      }
+    ],
+    "ap": 7,
+    "range": {
+      "effectiveM": 600,
+      "maxM": 1000
+    },
+    "weightKg": 4.23,
+    "stowage": {
+      "extendedMm": 915,
+      "collapsedMm": 670
+    }
+  },
+  {
+    "id": "hk433",
+    "name": "HK433",
+    "ammoId": "5-56x45mm",
+    "class": "Assault Rifle",
+    "valueTk": 18000,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 600,
+      "maxM": 800
+    },
+    "weightKg": 3.35,
+    "stowage": {
+      "extendedMm": 930,
+      "collapsedMm": 670
+    }
+  },
+  {
+    "id": "g36k",
+    "name": "G36K",
+    "ammoId": "5-56x45mm",
+    "class": "Assault Rifle",
+    "valueTk": 18000,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 600,
+      "maxM": 800
+    },
+    "weightKg": 3.3,
+    "stowage": {
+      "extendedMm": 860,
+      "collapsedMm": 615
+    }
+  },
+  {
+    "id": "g3a3",
+    "name": "G3A3",
+    "ammoId": "7-62x51mm",
+    "class": "Battle Rifle",
+    "valueTk": 24000,
+    "velocity": 4,
+    "damage": [
+      {
+        "count": 3,
+        "sides": 20
+      }
+    ],
+    "ap": 7,
+    "range": {
+      "effectiveM": 600,
+      "maxM": 800
+    },
+    "weightKg": 4.38,
+    "stowage": {
+      "extendedMm": 1025,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "psg-1",
+    "name": "PSG-1",
+    "ammoId": "7-62x51mm",
+    "class": "DMR",
+    "valueTk": 32000,
+    "velocity": 4,
+    "damage": [
+      {
+        "count": 3,
+        "sides": 20
+      }
+    ],
+    "ap": 7,
+    "range": {
+      "effectiveM": 800,
+      "maxM": 1000
+    },
+    "weightKg": 7.2,
+    "stowage": {
+      "extendedMm": 1230,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "groza-14",
+    "name": "Groza-14",
+    "ammoId": "9x39mm",
+    "class": "Carbine",
+    "valueTk": 17500,
+    "velocity": 1,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 8
+      }
+    ],
+    "ap": 6,
+    "range": {
+      "effectiveM": 200,
+      "maxM": 300
+    },
+    "weightKg": 2.7,
+    "stowage": {
+      "extendedMm": 700,
+      "collapsedMm": 500
+    }
+  },
+  {
+    "id": "as-val",
+    "name": "AS-VAL",
+    "ammoId": "9x39mm",
+    "class": "Assault Rifle",
+    "valueTk": 26000,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 8
+      }
+    ],
+    "ap": 6,
+    "range": {
+      "effectiveM": 200,
+      "maxM": 400
+    },
+    "weightKg": 2.5,
+    "stowage": {
+      "extendedMm": 875,
+      "collapsedMm": 650
+    }
+  },
+  {
+    "id": "vss",
+    "name": "VSS",
+    "ammoId": "9x39mm",
+    "class": "DMR",
+    "valueTk": 25000,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 8
+      }
+    ],
+    "ap": 6,
+    "range": {
+      "effectiveM": 200,
+      "maxM": 400
+    },
+    "weightKg": 2.6,
+    "stowage": {
+      "extendedMm": 894,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "svd",
+    "name": "SVD",
+    "ammoId": "7-62x54mmr",
+    "class": "DMR",
+    "valueTk": 26000,
+    "velocity": 4,
+    "damage": [
+      {
+        "count": 3,
+        "sides": 20
+      }
+    ],
+    "ap": 9,
+    "range": {
+      "effectiveM": 800,
+      "maxM": 1300
+    },
+    "weightKg": 4.3,
+    "stowage": {
+      "extendedMm": 1225,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "pkm",
+    "name": "PKM",
+    "ammoId": "7-62x54mmr",
+    "class": "GPMG",
+    "valueTk": 45900,
+    "velocity": 5,
+    "damage": [
+      {
+        "count": 3,
+        "sides": 20
+      }
+    ],
+    "ap": 9,
+    "range": {
+      "effectiveM": 500,
+      "maxM": 800
+    },
+    "weightKg": 7.5,
+    "stowage": {
+      "extendedMm": 1173,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "rpk-74",
+    "name": "RPK-74",
+    "ammoId": "5-45x39mm",
+    "class": "LMG",
+    "valueTk": 16000,
+    "velocity": 4,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 10
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 600,
+      "maxM": 800
+    },
+    "weightKg": 4.7,
+    "stowage": {
+      "extendedMm": 1060,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "rpk-74m",
+    "name": "RPK-74M",
+    "ammoId": "5-45x39mm",
+    "class": "LMG",
+    "valueTk": 16000,
+    "velocity": 4,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 10
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 600,
+      "maxM": 800
+    },
+    "weightKg": 5.15,
+    "stowage": {
+      "extendedMm": 1060,
+      "collapsedMm": 845
+    }
+  },
+  {
+    "id": "rpg-7v1",
+    "name": "RPG-7V1",
+    "ammoId": "pg-7vl",
+    "class": "RL",
+    "valueTk": 53125,
+    "velocity": 0,
+    "damage": [
+      {
+        "count": 10,
+        "sides": 20
+      }
+    ],
+    "ap": 20,
+    "range": {
+      "effectiveM": 300,
+      "maxM": 500
+    },
+    "weightKg": 6.3,
+    "stowage": {
+      "extendedMm": 950,
+      "collapsedMm": 630
+    }
+  },
+  {
+    "id": "abakan",
+    "name": "Abakan",
+    "ammoId": "5-45x39mm",
+    "class": "Assault Rifle",
+    "valueTk": 14500,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 10
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 400,
+      "maxM": 800
+    },
+    "weightKg": 3.85,
+    "stowage": {
+      "extendedMm": 943,
+      "collapsedMm": 728
+    }
+  },
+  {
+    "id": "fort-221",
+    "name": "Fort-221",
+    "ammoId": "5-45x39mm",
+    "class": "Assault Rifle",
+    "valueTk": 15000,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 10
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 400,
+      "maxM": 800
+    },
+    "weightKg": 3.95,
+    "stowage": {
+      "extendedMm": 755,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "malyuk",
+    "name": "Malyuk",
+    "ammoId": "5-45x39mm",
+    "class": "Assault Rifle",
+    "valueTk": 34000,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 10
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 500,
+      "maxM": 800
+    },
+    "weightKg": 3.5,
+    "stowage": {
+      "extendedMm": 702,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "l85a2",
+    "name": "L85A2",
+    "ammoId": "5-56x45mm",
+    "class": "Assault Rifle",
+    "valueTk": 13500,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 400,
+      "maxM": 800
+    },
+    "weightKg": 3.82,
+    "stowage": {
+      "extendedMm": 785,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "sg550",
+    "name": "SG550",
+    "ammoId": "5-56x45mm",
+    "class": "Assault Rifle",
+    "valueTk": 16500,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 400,
+      "maxM": 800
+    },
+    "weightKg": 4.1,
+    "stowage": {
+      "extendedMm": 1000,
+      "collapsedMm": 772
+    }
+  },
+  {
+    "id": "sg552",
+    "name": "SG552",
+    "ammoId": "5-56x45mm",
+    "class": "Carbine",
+    "valueTk": 15000,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 200,
+      "maxM": 500
+    },
+    "weightKg": 3.2,
+    "stowage": {
+      "extendedMm": 730,
+      "collapsedMm": 504
+    }
+  },
+  {
+    "id": "carmel",
+    "name": "Carmel",
+    "ammoId": "5-56x45mm",
+    "class": "Assault Rifle",
+    "valueTk": 28000,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 300,
+      "maxM": 600
+    },
+    "weightKg": 3.68,
+    "stowage": {
+      "extendedMm": 946,
+      "collapsedMm": 680
+    }
+  },
+  {
+    "id": "ots-03",
+    "name": "OTs-03",
+    "ammoId": "7-62x54mmr",
+    "class": "DMR",
+    "valueTk": 25000,
+    "velocity": 4,
+    "damage": [
+      {
+        "count": 3,
+        "sides": 20
+      }
+    ],
+    "ap": 9,
+    "range": {
+      "effectiveM": 800,
+      "maxM": 1200
+    },
+    "weightKg": 3.6,
+    "stowage": {
+      "extendedMm": 875,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "three-line-rifle",
+    "name": "Three-Line Rifle",
+    "ammoId": "7-62x54mmr",
+    "class": "Sniper Rifle",
+    "valueTk": 3500,
+    "velocity": 6,
+    "damage": [
+      {
+        "count": 3,
+        "sides": 20
+      }
+    ],
+    "ap": 9,
+    "range": {
+      "effectiveM": 400,
+      "maxM": 800
+    },
+    "weightKg": 4,
+    "stowage": {
+      "extendedMm": 1232,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "akm",
+    "name": "AKM",
+    "ammoId": "7-62x39mm",
+    "class": "Assault Rifle",
+    "valueTk": 11500,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 6
+      }
+    ],
+    "ap": 5,
+    "range": {
+      "effectiveM": 500,
+      "maxM": 800
+    },
+    "weightKg": 3.3,
+    "stowage": {
+      "extendedMm": 880,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "sks",
+    "name": "SKS",
+    "ammoId": "7-62x39mm",
+    "class": "DMR",
+    "valueTk": 9500,
+    "velocity": 4,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 6
+      }
+    ],
+    "ap": 5,
+    "range": {
+      "effectiveM": 400,
+      "maxM": 600
+    },
+    "weightKg": 3.85,
+    "stowage": {
+      "extendedMm": 1022,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "m1a",
+    "name": "M1A",
+    "ammoId": "7-62x51mm",
+    "class": "Battle Rifle",
+    "valueTk": 28000,
+    "velocity": 4,
+    "damage": [
+      {
+        "count": 3,
+        "sides": 20
+      }
+    ],
+    "ap": 7,
+    "range": {
+      "effectiveM": 400,
+      "maxM": 800
+    },
+    "weightKg": 4.08,
+    "stowage": {
+      "extendedMm": 1128,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "r700",
+    "name": "R700",
+    "ammoId": "7-62x51mm",
+    "class": "Sniper Rifle",
+    "valueTk": 35530,
+    "velocity": 6,
+    "damage": [
+      {
+        "count": 3,
+        "sides": 20
+      }
+    ],
+    "ap": 7,
+    "range": {
+      "effectiveM": 600,
+      "maxM": 1400
+    },
+    "weightKg": 3.4,
+    "stowage": {
+      "extendedMm": 1118,
+      "collapsedMm": 889
+    }
+  },
+  {
+    "id": "fort-12",
+    "name": "Fort-12",
+    "ammoId": "9x18mm",
+    "class": "Pistol",
+    "valueTk": 2200,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 1,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 50
+    },
+    "weightKg": 0.83,
+    "stowage": {
+      "extendedMm": 180,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "fort-14tp",
+    "name": "Fort-14TP",
+    "ammoId": "9x18mm",
+    "class": "Pistol",
+    "valueTk": 2500,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 1,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 50
+    },
+    "weightKg": 0.94,
+    "stowage": {
+      "extendedMm": 205,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "browning-hp",
+    "name": "Browning HP",
+    "ammoId": "9x19mm",
+    "class": "Pistol",
+    "valueTk": 2800,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 2,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 50
+    },
+    "weightKg": 0.91,
+    "stowage": {
+      "extendedMm": 198,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "m1911",
+    "name": "M1911",
+    "ammoId": "45-acp",
+    "class": "Pistol",
+    "valueTk": 5500,
+    "velocity": 1,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 6
+      }
+    ],
+    "ap": 3,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 50
+    },
+    "weightKg": 1.1,
+    "stowage": {
+      "extendedMm": 219,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "m9",
+    "name": "M9",
+    "ammoId": "9x19mm",
+    "class": "Pistol",
+    "valueTk": 3200,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 2,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 50
+    },
+    "weightKg": 0.95,
+    "stowage": {
+      "extendedMm": 217,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "rsh-12",
+    "name": "RSh-12",
+    "ammoId": "12-7x55mm",
+    "class": "Revolver",
+    "valueTk": 10336,
+    "velocity": 1,
+    "damage": [
+      {
+        "count": 4,
+        "sides": 20
+      }
+    ],
+    "ap": 12,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 100
+    },
+    "weightKg": 2.2,
+    "stowage": {
+      "extendedMm": 357,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "stechkin",
+    "name": "Stechkin",
+    "ammoId": "9x18mm",
+    "class": "Machine Pistol",
+    "valueTk": 14000,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 1,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 50,
+      "note": "200m w/ stock"
+    },
+    "weightKg": 1.02,
+    "stowage": {
+      "extendedMm": 225,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "usp-45",
+    "name": "USP-45",
+    "ammoId": "45-acp",
+    "class": "Pistol",
+    "valueTk": 6000,
+    "velocity": 1,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 6
+      }
+    ],
+    "ap": 3,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 50
+    },
+    "weightKg": 0.79,
+    "stowage": {
+      "extendedMm": 200,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "glock-17",
+    "name": "Glock-17",
+    "ammoId": "9x19mm",
+    "class": "Pistol",
+    "valueTk": 3500,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 2,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 50
+    },
+    "weightKg": 0.63,
+    "stowage": {
+      "extendedMm": 204,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "rpg-22",
+    "name": "RPG-22",
+    "ammoId": "72-5mm-rocket",
+    "class": "RL",
+    "valueTk": 22000,
+    "velocity": 0,
+    "damage": [
+      {
+        "count": 8,
+        "sides": 20
+      }
+    ],
+    "ap": 20,
+    "range": {
+      "effectiveM": 150,
+      "maxM": 200
+    },
+    "weightKg": 2.8,
+    "stowage": {
+      "extendedMm": 850,
+      "collapsedMm": 755
+    }
+  },
+  {
+    "id": "spear",
+    "name": "Spear",
+    "ammoId": "6-8x51mm",
+    "class": "Battle Rifle",
+    "valueTk": 54000,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 10
+      }
+    ],
+    "ap": 6,
+    "range": {
+      "effectiveM": 700,
+      "maxM": 900
+    },
+    "weightKg": 3.8,
+    "stowage": {
+      "extendedMm": 914,
+      "collapsedMm": 685
+    }
+  },
+  {
+    "id": "fort-230",
+    "name": "Fort-230",
+    "ammoId": "9x19mm",
+    "class": "SMG",
+    "valueTk": 13500,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 2,
+    "range": {
+      "effectiveM": 50,
+      "maxM": 200
+    },
+    "weightKg": 3.2,
+    "stowage": {
+      "extendedMm": 640,
+      "collapsedMm": 410
+    }
+  },
+  {
+    "id": "mp5a2",
+    "name": "MP5A2",
+    "ammoId": "9x19mm",
+    "class": "SMG",
+    "valueTk": 5500,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 2,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 200
+    },
+    "weightKg": 2.54,
+    "stowage": {
+      "extendedMm": 680,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "mp5a3",
+    "name": "MP5A3",
+    "ammoId": "9x19mm",
+    "class": "SMG",
+    "valueTk": 5500,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 2,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 200
+    },
+    "weightKg": 3.08,
+    "stowage": {
+      "extendedMm": 700,
+      "collapsedMm": 550
+    }
+  },
+  {
+    "id": "vector-9",
+    "name": "Vector-9",
+    "ammoId": "9x19mm",
+    "class": "SMG",
+    "valueTk": 17000,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 2,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 150
+    },
+    "weightKg": 2.7,
+    "stowage": {
+      "extendedMm": 617,
+      "collapsedMm": 406
+    }
+  },
+  {
+    "id": "bizon-2",
+    "name": "Bizon-2",
+    "ammoId": "9x19mm",
+    "class": "SMG",
+    "valueTk": 20600,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 2,
+    "range": {
+      "effectiveM": 50,
+      "maxM": 100
+    },
+    "weightKg": 2.1,
+    "stowage": {
+      "extendedMm": 690,
+      "collapsedMm": 460
+    }
+  },
+  {
+    "id": "mac-10",
+    "name": "MAC-10",
+    "ammoId": "45-acp",
+    "class": "Machine Pistol",
+    "valueTk": 14000,
+    "velocity": 1,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 6
+      }
+    ],
+    "ap": 3,
+    "range": {
+      "effectiveM": 50,
+      "maxM": 100
+    },
+    "weightKg": 2.84,
+    "stowage": {
+      "extendedMm": 548,
+      "collapsedMm": 295
+    }
+  },
+  {
+    "id": "kiparis",
+    "name": "Kiparis",
+    "ammoId": "9x18mm",
+    "class": "SMG",
+    "valueTk": 4800,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 1,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 100
+    },
+    "weightKg": 1.57,
+    "stowage": {
+      "extendedMm": 590,
+      "collapsedMm": 317
+    }
+  },
+  {
+    "id": "pmm",
+    "name": "PMM",
+    "ammoId": "9x18mm",
+    "class": "Pistol",
+    "valueTk": 1500,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      }
+    ],
+    "ap": 1,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 50
+    },
+    "weightKg": 0.76,
+    "stowage": {
+      "extendedMm": 165,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "toz-66",
+    "name": "TOZ-66",
+    "ammoId": "12x70mm",
+    "class": "Shotgun",
+    "valueTk": 2500,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 4,
+        "sides": 20
+      }
+    ],
+    "ap": 3,
+    "range": {
+      "effectiveM": 10,
+      "maxM": 35
+    },
+    "weightKg": 3.2,
+    "stowage": {
+      "extendedMm": 1000,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "toz-34e",
+    "name": "TOZ-34E",
+    "ammoId": "12x70mm",
+    "class": "Shotgun",
+    "valueTk": 3000,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 4,
+        "sides": 20
+      }
+    ],
+    "ap": 3,
+    "range": {
+      "effectiveM": 35,
+      "maxM": 50
+    },
+    "weightKg": 3.2,
+    "stowage": {
+      "extendedMm": 1150,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "spas-12",
+    "name": "SPAS-12",
+    "ammoId": "12x70mm",
+    "class": "Shotgun",
+    "valueTk": 11000,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 4,
+        "sides": 20
+      }
+    ],
+    "ap": 3,
+    "range": {
+      "effectiveM": 30,
+      "maxM": 50
+    },
+    "weightKg": 4.4,
+    "stowage": {
+      "extendedMm": 1041,
+      "collapsedMm": 710
+    }
+  },
+  {
+    "id": "m870",
+    "name": "M870",
+    "ammoId": "12x70mm",
+    "class": "Shotgun",
+    "valueTk": 8000,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 4,
+        "sides": 20
+      }
+    ],
+    "ap": 3,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 50
+    },
+    "weightKg": 3.4,
+    "stowage": {
+      "extendedMm": 970,
+      "collapsedMm": 750
+    }
+  },
+  {
+    "id": "dp-12",
+    "name": "DP-12",
+    "ammoId": "12x70mm",
+    "class": "Shotgun",
+    "valueTk": 29000,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 4,
+        "sides": 20
+      }
+    ],
+    "ap": 3,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 33
+    },
+    "weightKg": 4.42,
+    "stowage": {
+      "extendedMm": 749,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "saiga-12k",
+    "name": "Saiga-12K",
+    "ammoId": "12x70mm",
+    "class": "Shotgun",
+    "valueTk": 24000,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 4,
+        "sides": 20
+      }
+    ],
+    "ap": 3,
+    "range": {
+      "effectiveM": 35,
+      "maxM": 70
+    },
+    "weightKg": 3.5,
+    "stowage": {
+      "extendedMm": 910,
+      "collapsedMm": 670
+    }
+  },
+  {
+    "id": "maverick",
+    "name": "Maverick",
+    "ammoId": "12x70mm",
+    "class": "Shotgun",
+    "valueTk": 6500,
+    "velocity": 2,
+    "damage": [
+      {
+        "count": 4,
+        "sides": 20
+      }
+    ],
+    "ap": 3,
+    "range": {
+      "effectiveM": 25,
+      "maxM": 44
+    },
+    "weightKg": 2.72,
+    "stowage": {
+      "extendedMm": 1003,
+      "collapsedMm": 750
+    }
+  },
+  {
+    "id": "hk417a2-assaulter",
+    "name": "HK417A2 Assaulter",
+    "ammoId": "7-62x51mm",
+    "class": "Carbine",
+    "valueTk": 30000,
+    "velocity": 4,
+    "damage": [
+      {
+        "count": 3,
+        "sides": 20
+      }
+    ],
+    "ap": 7,
+    "range": {
+      "effectiveM": 500,
+      "maxM": 800
+    },
+    "weightKg": 4,
+    "stowage": {
+      "extendedMm": 885,
+      "collapsedMm": 608
+    }
+  },
+  {
+    "id": "aek-971",
+    "name": "AEK-971",
+    "ammoId": "5-45x39mm",
+    "class": "Assault Rifle",
+    "valueTk": 13000,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 1,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 10
+      }
+    ],
+    "ap": 4,
+    "range": {
+      "effectiveM": 500,
+      "maxM": 800
+    },
+    "weightKg": 3.3,
+    "stowage": {
+      "extendedMm": 960,
+      "collapsedMm": 720
+    }
+  },
+  {
+    "id": "9a91",
+    "name": "9A91",
+    "ammoId": "9x39mm",
+    "class": "SMG",
+    "valueTk": 24000,
+    "velocity": 1,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 8
+      }
+    ],
+    "ap": 5,
+    "range": {
+      "effectiveM": 200,
+      "maxM": 400
+    },
+    "weightKg": 2.1,
+    "stowage": {
+      "extendedMm": 605,
+      "collapsedMm": 383
+    }
+  },
+  {
+    "id": "ash-12",
+    "name": "ASh-12",
+    "ammoId": "12-7x55mm",
+    "class": "Assault Rifle",
+    "valueTk": 38000,
+    "velocity": 1,
+    "damage": [
+      {
+        "count": 4,
+        "sides": 20
+      }
+    ],
+    "ap": 12,
+    "range": {
+      "effectiveM": 100,
+      "maxM": 400
+    },
+    "weightKg": 6,
+    "stowage": {
+      "extendedMm": 1020,
+      "collapsedMm": null
+    }
+  },
+  {
+    "id": "aek-973",
+    "name": "AEK-973",
+    "ammoId": "7-62x39mm",
+    "class": "Assault Rifle",
+    "valueTk": 14000,
+    "velocity": 3,
+    "damage": [
+      {
+        "count": 2,
+        "sides": 20
+      },
+      {
+        "count": 1,
+        "sides": 6
+      }
+    ],
+    "ap": 5,
+    "range": {
+      "effectiveM": 500,
+      "maxM": 800
+    },
+    "weightKg": 3.25,
+    "stowage": {
+      "extendedMm": 960,
+      "collapsedMm": 720
+    }
+  }
+]

@@ -2,7 +2,8 @@
 
 Working notes on a companion app for a friend's D&D-like tabletop adaptation of
 *S.T.A.L.K.E.R. 2: Heart of Chornobyl*. This file records my reading of the
-source material and the planning discussion so far. **Nothing has been built.**
+source material and the planning discussion so far. The data pipeline is built
+(2026-11-27); the rules engine and app are not.
 The source is the Google Sheet "STALKER DND" (tab "Rules & Function", range
 A1:AM79), owned by the rules author and shared view-only. The tables below were
 first transcribed by hand from pasted CSV and checked cell by cell against a CSV
@@ -58,20 +59,25 @@ Conventions in this document:
    Web first.
 4. **Characters and inventory:** persistence and sheets.
 
-### Planned data pipeline (not started)
+### Data pipeline (built 2026-11-27)
 
-A script to split the CSV into `weapons.json`, `ammo.json`, `armor.json`,
-`factions.json`, and a rules/notes file, with Zod schemas and a validator that
-**warns without altering data**. Normalizations planned:
+`npm run data` converts `data/source/stalker-dnd-sheet.csv` into
+`data/weapons.json`, `ammo.json` (calibers and variants), `armor.json`,
+`factions.json` and `tables.json` (AC by level, currency, the sheet's rules
+text), plus `data/validation-report.md`. Code is in `src/data/`; tests in
+`test/` (`npm test`) also check the committed JSON matches a fresh run.
 
-- Damage strings parsed into dice lists, e.g. `1d20/1d10` becomes
-  `[{count:1, sides:20}, {count:1, sides:10}]`. Velocity stays a separate flat field.
-- Ranges normalized to `{effective, max}` in meters, with an explicit note field
-  for the Stechkin's stock range.
-- Faction names normalized to IDs ("Mercs" and "Mercenaries" become one ID).
-- AC by armor level read from the sheet's AC row (section 6).
-- Open item #5 (below) recorded as a `TODO` entry; the armor-matching damage
-  step stays out of the engine until answered.
+- Tables are found by header text, not column letters, so added columns
+  (e.g. the planned fire-capability column) don't break it.
+- Normalizations: dice lists (`1d20/1d10` becomes two dice), ranges in meters
+  with an optional note (Stechkin), weight in kg, stowage in mm, trimmed text,
+  `N/A` as null or empty, kebab-case IDs, "Mercs" read as `mercenaries`,
+  `IPSF and Corps` split into two factions, `IPSF (usually)` kept as a note,
+  `//CLASSIFIED//` kept as `"classified"`. Ammo tier and AC come from the grid.
+- Any unreadable cell stops the build with its cell reference; nothing is
+  written. Suspicious values are reported as warnings and never altered.
+- Rules that aren't in the sheet (CQB 5m, fire-mode cutoffs, minimum one
+  round, class-based fire capability) belong in the engine's settings, not here.
 
 ---
 
@@ -596,12 +602,11 @@ through, so the history is visible.
 
 Next steps, in order:
 
-1. Have the converter read `data/source/stalker-dnd-sheet.csv`. When the sheet
-   changes, replace that file with a fresh export (the sheet is reachable
-   through the Drive connector), so nothing has to be retyped.
-2. Build the converter, schemas, and validator described in section 1.
-3. Write the worked-example attack document (about 10 cases) with the friend,
-   which resolves most of the open pipeline questions in section 3 at once.
-4. The armor pipeline in section 3 is complete enough to implement now. Keep
-   the remaining guesses (Prot column and rounding, AP damage vs
-   unarmored targets) as clearly labeled settings so they are easy to change.
+1. ~~Converter, schemas and validator.~~ **Done** (section 1). When the sheet
+   changes, replace the CSV with a fresh export (reachable through the Drive
+   connector) and run `npm run data`.
+2. ~~Worked-example attack document.~~ **Written**; awaiting the author's review.
+3. Build the rules engine in TypeScript against the generated data, with the
+   worked examples as its first tests. Keep the remaining guesses (Prot column
+   and rounding, AP damage vs unarmored targets) and the provisional rules as
+   clearly labeled settings so they are easy to change.

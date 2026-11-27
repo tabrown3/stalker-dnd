@@ -1,0 +1,565 @@
+[
+  {
+    "id": "ipsf",
+    "name": "IPSF",
+    "description": "Federally supported international guard force. Well funded but corrupt officers keep the money from actually reaching the men. Excursions rarely stray from the routes between outposts.",
+    "nationality": "Slavic primarily",
+    "base": "The Sphere",
+    "notableLocations": [
+      "Dam",
+      "Duga (until campaign)"
+    ],
+    "leader": "Major Harmata",
+    "abilityBonus": "Charisma",
+    "skillBonus": "Perception",
+    "allies": [
+      {
+        "factionId": "malachite"
+      },
+      {
+        "factionId": "corps"
+      }
+    ],
+    "neutral": [
+      {
+        "factionId": "ward"
+      },
+      {
+        "factionId": "sircaa"
+      },
+      {
+        "factionId": "spark"
+      }
+    ],
+    "enemies": [
+      {
+        "factionId": "loners"
+      },
+      {
+        "factionId": "duty"
+      },
+      {
+        "factionId": "freedom"
+      },
+      {
+        "factionId": "noontide"
+      },
+      {
+        "factionId": "bandits"
+      },
+      {
+        "factionId": "mercenaries"
+      }
+    ]
+  },
+  {
+    "id": "ward",
+    "name": "Ward",
+    "description": "A PMC entrusted with the protection of SIRCAA. The group settled the faction conflict and drafted the D4 treaty to keep the zone from outright war. The Ward is incredibly well funded. They patrol all around the Zone.",
+    "nationality": "Slavic primarily",
+    "base": "Chemical Plant",
+    "notableLocations": [
+      "SIRCAA",
+      "Duga (during campaign)"
+    ],
+    "leader": "Colonel Korshunov",
+    "abilityBonus": "Constitution",
+    "skillBonus": "Performance",
+    "allies": [
+      {
+        "factionId": "sircaa"
+      }
+    ],
+    "neutral": [
+      {
+        "factionId": "loners"
+      },
+      {
+        "factionId": "duty"
+      },
+      {
+        "factionId": "malachite"
+      },
+      {
+        "factionId": "ipsf"
+      }
+    ],
+    "enemies": [
+      {
+        "factionId": "spark"
+      },
+      {
+        "factionId": "noontide"
+      },
+      {
+        "factionId": "freedom"
+      },
+      {
+        "factionId": "bandits"
+      },
+      {
+        "factionId": "mercenaries"
+      },
+      {
+        "factionId": "corps"
+      }
+    ]
+  },
+  {
+    "id": "mercenaries",
+    "name": "Mercenaries",
+    "description": "A group of professional guns for hire. They complete any contract given to them, but some believe there is a much more organized structure and goal behind the money-focused facade.They are incredibly well equipped. Allegiances vary.",
+    "nationality": "Westerners primarily",
+    "base": "The Dead City",
+    "notableLocations": [],
+    "leader": "//UNKNOWN//",
+    "abilityBonus": "Strength",
+    "skillBonus": "Athletics",
+    "allies": "classified",
+    "neutral": [
+      {
+        "factionId": "bandits"
+      },
+      {
+        "factionId": "spark"
+      },
+      {
+        "factionId": "duty"
+      },
+      {
+        "factionId": "malachite"
+      },
+      {
+        "factionId": "freedom"
+      },
+      {
+        "factionId": "loners"
+      },
+      {
+        "factionId": "noontide"
+      }
+    ],
+    "enemies": [
+      {
+        "factionId": "ipsf"
+      },
+      {
+        "factionId": "ward"
+      },
+      {
+        "factionId": "sircaa"
+      }
+    ]
+  },
+  {
+    "id": "duty",
+    "name": "Duty",
+    "description": "A heavily militarized organization dedicated to the destruction of the Zone. Equipped with high-tier gear and military tactics, Duty's war has only paused with D4.",
+    "nationality": "Slavic primarily",
+    "base": "The Concrete Plant",
+    "notableLocations": [],
+    "leader": "General Voronin",
+    "abilityBonus": "Constitution",
+    "skillBonus": "Intimidation",
+    "allies": [],
+    "neutral": [
+      {
+        "factionId": "loners"
+      },
+      {
+        "factionId": "malachite"
+      },
+      {
+        "factionId": "spark"
+      },
+      {
+        "factionId": "ward"
+      },
+      {
+        "factionId": "sircaa"
+      },
+      {
+        "factionId": "noontide"
+      },
+      {
+        "factionId": "corps"
+      }
+    ],
+    "enemies": [
+      {
+        "factionId": "ipsf"
+      },
+      {
+        "factionId": "bandits"
+      },
+      {
+        "factionId": "freedom"
+      },
+      {
+        "factionId": "mercenaries"
+      }
+    ]
+  },
+  {
+    "id": "freedom",
+    "name": "Freedom",
+    "description": "An organized group focused on the continuity of the Zone, and the freedom to find one's own fate. Well equipped with Eastern and Western gear, Freedom is capable of bringin immense fire power to bear.",
+    "nationality": "Slavic primarily",
+    "base": "Rostok",
+    "notableLocations": [],
+    "leader": "Miklukha",
+    "abilityBonus": "Charisma",
+    "skillBonus": "Persuasion",
+    "allies": [
+      {
+        "factionId": "spark"
+      }
+    ],
+    "neutral": [
+      {
+        "factionId": "loners"
+      },
+      {
+        "factionId": "mercenaries"
+      },
+      {
+        "factionId": "malachite"
+      },
+      {
+        "factionId": "ward"
+      },
+      {
+        "factionId": "sircaa"
+      },
+      {
+        "factionId": "noontide"
+      },
+      {
+        "factionId": "corps"
+      }
+    ],
+    "enemies": [
+      {
+        "factionId": "duty"
+      },
+      {
+        "factionId": "bandits"
+      },
+      {
+        "factionId": "ipsf"
+      }
+    ]
+  },
+  {
+    "id": "corps",
+    "name": "Corps",
+    "description": "An extension of the Ukrainian Ministry of Defense. Special operatives serve under Colonel Degtyarev, equipped with some of the best weaponry and equipment in the Zone. Their mission is to protect and guard Pripyat and the X labs within.",
+    "nationality": "Exclusively Ukrainian",
+    "base": "Enerhetyk",
+    "notableLocations": [
+      "Yaniv Station"
+    ],
+    "leader": "Colonel Degtyarev",
+    "abilityBonus": "Wisdom",
+    "skillBonus": "Survival",
+    "allies": [],
+    "neutral": [
+      {
+        "factionId": "duty"
+      },
+      {
+        "factionId": "freedom"
+      },
+      {
+        "factionId": "loners"
+      },
+      {
+        "factionId": "ipsf"
+      },
+      {
+        "factionId": "noontide"
+      },
+      {
+        "factionId": "mercenaries"
+      },
+      {
+        "factionId": "sircaa"
+      },
+      {
+        "factionId": "spark"
+      },
+      {
+        "factionId": "malachite"
+      }
+    ],
+    "enemies": [
+      {
+        "factionId": "bandits"
+      },
+      {
+        "factionId": "ward"
+      }
+    ]
+  },
+  {
+    "id": "malachite",
+    "name": "Malachite",
+    "description": "A scientific community that has been overshadowed by SIRCAA in recent years. It used to be the premier homebase for the scientific community in the Zone. Working alongside Spark, Malachite is poised to uncover secrets that SIRCAA is to brazon to notice.",
+    "nationality": "Slavic primarily",
+    "base": "STC Malachite",
+    "notableLocations": [],
+    "leader": "Professor Ozersky",
+    "abilityBonus": "Intelligence",
+    "skillBonus": "Nature",
+    "allies": [
+      {
+        "factionId": "spark"
+      },
+      {
+        "factionId": "ipsf"
+      }
+    ],
+    "neutral": [
+      {
+        "factionId": "duty"
+      },
+      {
+        "factionId": "freedom"
+      },
+      {
+        "factionId": "loners"
+      },
+      {
+        "factionId": "noontide"
+      },
+      {
+        "factionId": "mercenaries"
+      },
+      {
+        "factionId": "sircaa"
+      },
+      {
+        "factionId": "corps"
+      }
+    ],
+    "enemies": [
+      {
+        "factionId": "bandits"
+      },
+      {
+        "factionId": "ward"
+      }
+    ]
+  },
+  {
+    "id": "sircaa",
+    "name": "SIRCAA",
+    "description": "The brash but favored younger brother of the Zone's scientific community. SIRCAA is so deadset on expanding mankind's capabilities that it runs full speed into things it doesn't understand.",
+    "nationality": "International, Ukrainian-led",
+    "base": "SIRCAA",
+    "notableLocations": [],
+    "leader": "Doctor Dalin",
+    "abilityBonus": "Intelligence",
+    "skillBonus": "Arcana",
+    "allies": [
+      {
+        "factionId": "ward"
+      }
+    ],
+    "neutral": [
+      {
+        "factionId": "duty"
+      },
+      {
+        "factionId": "freedom"
+      },
+      {
+        "factionId": "loners"
+      },
+      {
+        "factionId": "noontide"
+      },
+      {
+        "factionId": "mercenaries"
+      },
+      {
+        "factionId": "corps"
+      },
+      {
+        "factionId": "malachite"
+      },
+      {
+        "factionId": "ipsf"
+      }
+    ],
+    "enemies": [
+      {
+        "factionId": "spark"
+      },
+      {
+        "factionId": "bandits"
+      }
+    ]
+  },
+  {
+    "id": "loners",
+    "name": "Loners",
+    "description": "Loners and Stalkers are the lifeblood of the Zone's economy. Without them factions would loose substantially more resources and lives to milk runs, artifact recoveries, and rescue missions. Equipment and allegiances vary.",
+    "nationality": "Any",
+    "base": null,
+    "notableLocations": [
+      "Zalissya",
+      "Rookie Village"
+    ],
+    "leader": null,
+    "abilityBonus": "Wisdom",
+    "skillBonus": "Investigation",
+    "allies": [],
+    "neutral": [
+      {
+        "factionId": "duty"
+      },
+      {
+        "factionId": "freedom"
+      },
+      {
+        "factionId": "noontide"
+      },
+      {
+        "factionId": "mercenaries"
+      },
+      {
+        "factionId": "corps"
+      },
+      {
+        "factionId": "malachite"
+      },
+      {
+        "factionId": "spark"
+      },
+      {
+        "factionId": "ward"
+      },
+      {
+        "factionId": "sircaa"
+      }
+    ],
+    "enemies": [
+      {
+        "factionId": "bandits"
+      },
+      {
+        "factionId": "ipsf",
+        "note": "usually"
+      }
+    ]
+  },
+  {
+    "id": "bandits",
+    "name": "Bandits",
+    "description": "Rogues, thieves, and killers that, thoguht hey are split into different groups, are loosely connected for the sake of survival and wealth. Often using the poorest equipment.",
+    "nationality": "Slavic primarily",
+    "base": null,
+    "notableLocations": [
+      "Sultanks",
+      "Skadovsk",
+      "Slag Heap (neutral)",
+      "The Plant"
+    ],
+    "leader": null,
+    "abilityBonus": "Charisma",
+    "skillBonus": "Stealth",
+    "allies": [],
+    "neutral": [
+      {
+        "factionId": "mercenaries"
+      }
+    ],
+    "enemies": [
+      {
+        "factionId": "ipsf"
+      },
+      {
+        "factionId": "spark"
+      },
+      {
+        "factionId": "duty"
+      },
+      {
+        "factionId": "freedom"
+      },
+      {
+        "factionId": "loners"
+      },
+      {
+        "factionId": "ward"
+      },
+      {
+        "factionId": "sircaa"
+      },
+      {
+        "factionId": "malachite"
+      },
+      {
+        "factionId": "corps"
+      },
+      {
+        "factionId": "noontide"
+      }
+    ]
+  },
+  {
+    "id": "spark",
+    "name": "Spark",
+    "description": "A proud remnant of the Clear Sky faction. They prioritize the discovery of the Zone's secrets, however, when Ward attacked without cause Spark went to war.",
+    "nationality": "Slavic primarily",
+    "base": null,
+    "notableLocations": [
+      "STC Malachite",
+      "Detention Center",
+      "Spark Bunker"
+    ],
+    "leader": "Scar",
+    "abilityBonus": "Dexterity",
+    "skillBonus": "History",
+    "allies": [
+      {
+        "factionId": "freedom"
+      },
+      {
+        "factionId": "malachite"
+      },
+      {
+        "factionId": "noontide"
+      }
+    ],
+    "neutral": [
+      {
+        "factionId": "duty"
+      },
+      {
+        "factionId": "corps"
+      },
+      {
+        "factionId": "loners"
+      },
+      {
+        "factionId": "ipsf"
+      },
+      {
+        "factionId": "mercenaries"
+      }
+    ],
+    "enemies": [
+      {
+        "factionId": "ward"
+      },
+      {
+        "factionId": "sircaa"
+      },
+      {
+        "factionId": "bandits"
+      }
+    ]
+  }
+]

@@ -1,0 +1,222 @@
+{
+  "calibers": [
+    {
+      "id": "5-45x39mm",
+      "name": "5.45x39mm",
+      "damage": [
+        {
+          "count": 1,
+          "sides": 20
+        },
+        {
+          "count": 1,
+          "sides": 10
+        }
+      ],
+      "ap": 4,
+      "valueTk": 23,
+      "tier": "III"
+    },
+    {
+      "id": "5-56x45mm",
+      "name": "5.56x45mm",
+      "damage": [
+        {
+          "count": 2,
+          "sides": 20
+        }
+      ],
+      "ap": 4,
+      "valueTk": 33,
+      "tier": "III"
+    },
+    {
+      "id": "7-62x51mm",
+      "name": "7.62x51mm",
+      "damage": [
+        {
+          "count": 3,
+          "sides": 20
+        }
+      ],
+      "ap": 7,
+      "valueTk": 106,
+      "tier": "III+"
+    },
+    {
+      "id": "7-62x54mmr",
+      "name": "7.62x54mmR",
+      "damage": [
+        {
+          "count": 3,
+          "sides": 20
+        }
+      ],
+      "ap": 9,
+      "valueTk": 115,
+      "tier": "III+"
+    },
+    {
+      "id": "12-7x55mm",
+      "name": "12.7x55mm",
+      "damage": [
+        {
+          "count": 4,
+          "sides": 20
+        }
+      ],
+      "ap": 12,
+      "valueTk": 150,
+      "tier": "Undefendable"
+    },
+    {
+      "id": "9x19mm",
+      "name": "9x19mm",
+      "damage": [
+        {
+          "count": 1,
+          "sides": 20
+        }
+      ],
+      "ap": 2,
+      "valueTk": 12,
+      "tier": "II"
+    },
+    {
+      "id": "9x18mm",
+      "name": "9x18mm",
+      "damage": [
+        {
+          "count": 1,
+          "sides": 20
+        }
+      ],
+      "ap": 1,
+      "valueTk": 4,
+      "tier": "II"
+    },
+    {
+      "id": "45-acp",
+      "name": ".45 ACP",
+      "damage": [
+        {
+          "count": 1,
+          "sides": 20
+        },
+        {
+          "count": 1,
+          "sides": 6
+        }
+      ],
+      "ap": 3,
+      "valueTk": 19,
+      "tier": "IIIA"
+    },
+    {
+      "id": "7-62x39mm",
+      "name": "7.62x39mm",
+      "damage": [
+        {
+          "count": 2,
+          "sides": 20
+        },
+        {
+          "count": 1,
+          "sides": 6
+        }
+      ],
+      "ap": 5,
+      "valueTk": 65,
+      "tier": "III"
+    },
+    {
+      "id": "9x39mm",
+      "name": "9x39mm",
+      "damage": [
+        {
+          "count": 2,
+          "sides": 20
+        },
+        {
+          "count": 1,
+          "sides": 8
+        }
+      ],
+      "ap": 6,
+      "valueTk": 56,
+      "tier": "IV"
+    },
+    {
+      "id": "12x70mm",
+      "name": "12x70mm",
+      "damage": [
+        {
+          "count": 4,
+          "sides": 20
+        }
+      ],
+      "ap": 3,
+      "valueTk": 52,
+      "tier": "IIIA"
+    },
+    {
+      "id": "pg-7vl",
+      "name": "PG-7VL",
+      "damage": [
+        {
+          "count": 10,
+          "sides": 20
+        }
+      ],
+      "ap": 20,
+      "valueTk": 3125,
+      "tier": "Undefendable"
+    },
+    {
+      "id": "72-5mm-rocket",
+      "name": "72.5mm Rocket",
+      "damage": [
+        {
+          "count": 8,
+          "sides": 20
+        }
+      ],
+      "ap": 20,
+      "valueTk": 2500,
+      "tier": "Undefendable"
+    },
+    {
+      "id": "6-8x51mm",
+      "name": "6.8x51mm",
+      "damage": [
+        {
+          "count": 2,
+          "sides": 20
+        },
+        {
+          "count": 1,
+          "sides": 10
+        }
+      ],
+      "ap": 6,
+      "valueTk": 115,
+      "tier": "IV"
+    }
+  ],
+  "variants": [
+    {
+      "id": "ap",
+      "name": "AP Variant",
+      "plusDamage": 0,
+      "plusAp": 4,
+      "plusValueTk": 4
+    },
+    {
+      "id": "hollow-point",
+      "name": "Hollow-Point Variant",
+      "plusDamage": 4,
+      "plusAp": 0,
+      "plusValueTk": 2
+    }
+  ]
+}
