@@ -7,7 +7,8 @@ mistakes caught here will not end up in the code.
 
 The dice rolls are made up and given in advance, so the math can be checked
 exactly. All weapon, ammo and armor numbers come from the "Rules & Function"
-sheet.
+sheet. Each example is checked automatically by `test/engine.test.ts`; if an
+answer here changes, that test changes with it.
 
 ---
 
@@ -31,7 +32,8 @@ Rules you have already confirmed:
 - **Which weapons can fire more than 1 round per pull** (provisional, until the
   sheet gets a fire-capability column): pistols, shotguns, DMRs and sniper
   rifles fire only single shots. All other weapons can also fire bursts and
-  full auto.
+  full auto. *(My guess: the RSh-12 revolver and the RPG launchers are
+  single-shot too.)*
 - **Hitting:** meeting the AC is a hit, as in D&D.
 - **Rounds that hit** = half of what the pull's roll beats the AC by, rounded
   down, but always at least 1 on a hit.
@@ -154,9 +156,7 @@ The dice rolls are the same, plus one more for the extra hit.
 **Total: 34 damage**, compared with 18 for normal rounds. AP rounds both land
 more hits and add 4 damage to each one.
 
-**Question:** the variants table lists the AP variant as "+4 AP". I have **not**
-added that on top of the AK-74's own AP 4. Should AP rounds from an AK-74 have
-AP 8 instead?
+*(Decided: the AP variant's "+4 AP" is not added on top; AK-74 AP rounds use AP 4.)*
 
 Correct? ☐ Yes ☐ No: _______________
 

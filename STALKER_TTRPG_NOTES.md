@@ -2,8 +2,8 @@
 
 Working notes on a companion app for a friend's D&D-like tabletop adaptation of
 *S.T.A.L.K.E.R. 2: Heart of Chornobyl*. This file records my reading of the
-source material and the planning discussion so far. The data pipeline is built
-(2026-11-27); the rules engine and app are not.
+source material and the planning discussion so far. The data pipeline and the
+attack engine are built (2026-11-27); the app is not.
 The source is the Google Sheet "STALKER DND" (tab "Rules & Function", range
 A1:AM79), owned by the rules author and shared view-only. The tables below were
 first transcribed by hand from pasted CSV and checked cell by cell against a CSV
@@ -142,6 +142,8 @@ Header meaning, as annotated in the source:
    **[CONFIRMED, provisional]** Fire capability by class until the sheet gets a
    capability column (see section 9, #13): Pistol, Shotgun, DMR and Sniper Rifle
    are single-shot only. Every other class can fire single, burst and full auto.
+   **[GUESS]** Revolver (RSh-12) and RL (RPG-7V1, RPG-22) are also treated as
+   single-shot only, since the literal rule would let them fire full auto.
 5. **Rounds that hit [CONFIRMED]:** half the *remainder* (the amount by which the
    roll beats the AC), rounded down. In symbols: `roundsHit = floor((roll - effectiveAC) / 2)`.
    **[CONFIRMED 2026-11-22]** The to-hit roll is made **once per trigger pull**,
@@ -606,7 +608,11 @@ Next steps, in order:
    changes, replace the CSV with a fresh export (reachable through the Drive
    connector) and run `npm run data`.
 2. ~~Worked-example attack document.~~ **Written**; awaiting the author's review.
-3. Build the rules engine in TypeScript against the generated data, with the
-   worked examples as its first tests. Keep the remaining guesses (Prot column
-   and rounding, AP damage vs unarmored targets) and the provisional rules as
-   clearly labeled settings so they are easy to change.
+3. ~~Attack engine.~~ **Done** (2026-11-27): `src/engine/attack.ts`
+   (`resolveTurn`) takes weapon, ammo, variant, worn armor, distance, mounting
+   and rounds per pull, and returns every step of the working. All provisional
+   rules and guesses are labeled settings in `src/engine/settings.ts`. The 11
+   worked examples are tests in `test/engine.test.ts`.
+   `scripts/worked_examples.py` was the prototype and is superseded.
+4. Minimal UI (phase 3): pick attacker weapon, ammo, target armor, distance and
+   pulls; show the breakdown. Web first.
