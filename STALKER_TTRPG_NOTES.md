@@ -185,11 +185,14 @@ Clarifications from the user (2026-11-21):
 
 Still unresolved:
 
-- **[GUESS]** Prot uses the `Phys Prot` column for bullets, taken from the same
-  highest-level piece used for AC. **[OPEN]** Rounding for the Prot reduction;
-  this document assumes the removed amount rounds up, like the 25% rule.
-- **[OPEN]** The AP variant row has `+AP 4`. Does that add to the weapon's
-  `Rnd AP` (e.g. AK-74 AP rounds = 4 + 4 = 8), or is it just a description?
+- **Prot stacking [CONFIRMED 2026-11-26/27]:** the `Prot` of every worn piece,
+  masks included, is **added together** with **no cap** for now (e.g. body armor
+  46% + helmet 50% = 96%). Above 100% all dice damage is removed (dice damage
+  never goes below 0); velocity, hollow-point and AP damage still apply.
+  **[GUESS]** Bullets use the `Phys Prot` column. **[OPEN]** Rounding for the Prot reduction; this document assumes the
+  removed amount rounds up, like the 25% rule.
+- **AP variant `+AP 4` [CONFIRMED 2026-11-27]:** it does **not** add to the
+  weapon's `Rnd AP`. AP rounds use the weapon's `Rnd AP` alone (AK-74 AP = 4).
 - **[OPEN]** Do AP rounds add AP damage against an unarmored target? (The AC
   reduction applies only to armored targets.)
 - **[GUESS]** The armor level compared against ammo tier is the same
@@ -201,23 +204,24 @@ Still unresolved:
 ```
 1. armorLevel  = highest level among worn pieces, or none (unarmored)     # [CONFIRMED, provisional]
 2. targetAC    = AC_BY_LEVEL[armorLevel], or 10 if unarmored               # [CONFIRMED]
-3. ap          = weapon.RndAP if ammo is AP variant, else 0                # [CONFIRMED]; + variant +4? [OPEN]
+3. ap          = weapon.RndAP if ammo is AP variant, else 0                # [CONFIRMED]; variant +4 not added [CONFIRMED]
 4. effectiveAC = targetAC - ap   (only if armored)
 5. rangeMod    = +2 if <= 5m, -3 if beyond weapon range, else +0           # [CONFIRMED, provisional]
    For each trigger pull (one d20 per pull)                                # [CONFIRMED]
 5a.  roundsFired = chosen by the shooter for this pull                     # [CONFIRMED]
 5b.  fireModeMod = +1 if roundsFired == 1, +0 if 2-6, -1 if 7+             # [CONFIRMED]
      (roundsFired > 1 only if the weapon can burst / full auto)            # by class [CONFIRMED, provisional]
-6.   toHit       = d20 + rangeMod + fireModeMod + gpmgPenalty + (ability/skill mods?)
-7.   margin      = toHit - effectiveAC
-8.   roundsHit   = clamp(floor(margin / 2), 0, roundsFired)
-     For each round that hits:
+6.   toHit       = d20 + rangeMod + fireModeMod + gpmgPenalty             # no character mods yet [CONFIRMED 2026-11-26]
+7.   hit         = toHit >= effectiveAC   (D&D: meet or beat)              # [CONFIRMED 2026-11-26]; no crits for now
+     margin      = toHit - effectiveAC
+8.   roundsHit   = hit ? clamp(floor(margin / 2), 1, roundsFired) : 0     # min 1 on a hit [CONFIRMED 2026-11-27]
+     For each round that hits (dice and velocity per round [CONFIRMED 2026-11-26]):
 9.     dice      = roll(ammo dice)
 10.    tier step = compare ammo tier with armorLevel (skip if unarmored): # [CONFIRMED]
                      lower  -> ceil(dice / 2)
                      equal  -> dice - ceil(dice * 0.25)
                      higher -> dice   (all Undefendable ammo)
-11.    Prot step = afterTier - ceil(afterTier * physProt / 100)            # order [CONFIRMED]; column + rounding [GUESS]
+11.    Prot step = max(0, afterTier - ceil(afterTier * sumPhysProt / 100)) # order, sum, no cap [CONFIRMED]; column, rounding [GUESS]
 12.    round dmg = afterProt + weapon.velocity + (hollow-point ? 4 : 0) + ap # [CONFIRMED]; ap vs unarmored [OPEN]
 13. total      = sum over every round that hit, across all pulls this turn
 14. suppression = rounds fired that could not hit                          # [GUESS]
@@ -225,17 +229,28 @@ Still unresolved:
 
 ### Open questions on the pipeline [OPEN]
 
-- Does the attacker add ability or proficiency modifiers to the roll?
-- Does "beats AC" mean strictly greater or greater-or-equal? What happens at a
-  margin of 0 or 1 (where `floor(margin/2)` is 0)? Does a hit guarantee at least
-  one round?
+Decided 2026-11-26:
+
+- **Character modifiers:** none for now; to be added later.
+- **Tie with AC:** use the D&D rule, so meeting the AC is a hit (`toHit >= AC`).
+- **Dice and velocity:** rolled and added per round.
+- **Minimum rounds (2026-11-27):** a hit always lands at least one round, so a
+  tie or a margin of 1 hits for 1 round.
+- **Crits:** none for now (natural 1 and 20 are ordinary rolls).
+- **Multiple pieces:** `Prot` adds across all worn pieces, masks included, with
+  no cap. AC still comes from the highest-level piece.
+
+Still open:
+
 - Is `roundsHit` capped at the rounds fired on that pull? (Assumed yes.)
-- Are damage dice rolled per round or once per attack? Is velocity added per
-  round or once per attack? (The pipeline above assumes per round.)
-- Natural 1 and natural 20 rules? Critical hits?
-- With multiple worn pieces (mask plus helmet plus body armor), AC comes from the
-  highest-level piece (provisional). Which piece's `Prot` applies? Is there hit
-  location?
+- Is there hit location?
+
+Deferred by the user (2026-11-27), to be designed later:
+
+- Armor condition degradation.
+- Hit location (torso vs. other body parts), which may change how Prot and AC
+  apply per piece.
+- A cap on summed `Prot`.
 - Which rounds count as "guaranteed to miss" for suppression? (My guess: rounds
   fired in excess of `roundsHit`, or all rounds on a miss.)
 - Rad, Psi, Chem, Elec, and Thermal protection are presumably for hazards,
@@ -268,7 +283,8 @@ Damage written with `+` (source uses `/`). Value is per round, in TK.
 
 A round is normal, AP, or hollow-point. **[CONFIRMED]** AP rounds enable the
 weapon's `Rnd AP` (section 3); hollow-point adds +4 damage after armor.
-**[OPEN]** Whether the AP variant's `+AP 4` adds to the weapon's `Rnd AP`.
+**[CONFIRMED 2026-11-27]** The AP variant's `+AP 4` does not add to the
+weapon's `Rnd AP`; the weapon's value is used alone.
 
 | Variant | +DMG | +AP | +Value (TK) |
 |---|---|---|---|
@@ -587,5 +603,5 @@ Next steps, in order:
 3. Write the worked-example attack document (about 10 cases) with the friend,
    which resolves most of the open pipeline questions in section 3 at once.
 4. The armor pipeline in section 3 is complete enough to implement now. Keep
-   the remaining guesses (Prot column and rounding, variant +4 AP, AP damage vs
+   the remaining guesses (Prot column and rounding, AP damage vs
    unarmored targets) as clearly labeled settings so they are easy to change.

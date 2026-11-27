@@ -32,34 +32,36 @@ Rules you have already confirmed:
   sheet gets a fire-capability column): pistols, shotguns, DMRs and sniper
   rifles fire only single shots. All other weapons can also fire bursts and
   full auto.
+- **Hitting:** meeting the AC is a hit, as in D&D.
 - **Rounds that hit** = half of what the pull's roll beats the AC by, rounded
-  down.
+  down, but always at least 1 on a hit.
 - **Damage for each round that hits:**
   1. Roll the ammo's dice.
   2. Compare the ammo's tier with the armor's level:
      - Ammo below the armor's level: halve, rounding up.
      - Same level: remove 25%, rounding the removed amount up.
      - Higher (including all Undefendable ammo): full damage.
-  3. Reduce by the armor's Prot %.
+  3. Reduce by the Prot % of every worn piece added together, with no cap.
+     Dice damage can't go below 0.
   4. Add velocity, +4 for hollow-point, and the AP amount for AP rounds. Armor
      never reduces these.
 
 My assumptions. **Please check these especially:**
 
-- **A. No attacker bonuses:** the to-hit roll is d20 plus the modifiers above,
+- **A. No attacker bonuses:** *(decided, for now)* the to-hit roll is d20 plus the modifiers above,
   with no ability or skill bonus.
 - **B. Caps and limits:** the rounds that hit on a pull can't exceed the rounds
   that pull fired. The per-turn caps (30 for burst and full auto, 40 for LMGs)
   count every round fired that turn, across all pulls.
-- **C. Barely beating AC:** if the roll beats the AC by only 1 (or ties it), half
-  of that rounds down to 0, so no rounds hit.
-- **D. Dice per round:** the damage dice are rolled again for every round that
+- **C. Barely beating AC:** *(decided)* a tie or beating the AC by 1 still lands
+  1 round.
+- **D. Dice per round:** *(decided)* the damage dice are rolled again for every round that
   hits, and velocity is added to every round.
-- **E. Which Prot:** bullets use the **Phys Prot** column, from the same
-  highest-level piece that sets AC.
+- **E. Which Prot:** *(decided)* the Prot % of every worn piece is added
+  together, masks included, with no cap. Bullets use the **Phys Prot** column.
 - **F. Prot rounding:** the amount Prot removes rounds up, like the 25% rule.
-- **G. Masks don't count:** masks have no armor level, so a target wearing only
-  a mask counts as unarmored (AC 10, no Prot).
+- **G. Masks and AC:** masks have no armor level, so a target wearing only a
+  mask has AC 10 and gets no tier step, but the mask's Prot still applies.
 - **H. "Beyond range"** means beyond the weapon's **max** range (the second
   number).
 
@@ -182,7 +184,7 @@ Correct? ☐ Yes ☐ No: _______________
 
 ---
 
-## Example 6: Beating AC by only 1
+## Example 6: Beating AC by only 1 (updated: a hit lands at least 1 round)
 
 **Setup:** Fort-12 (9x18mm), normal rounds, one trigger pull of 1 round (single
 shot) at **10m**. The target wears a **Wind of Freedom Suit** (level II).
@@ -191,13 +193,14 @@ shot) at **10m**. The target wears a **Wind of Freedom Suit** (level II).
 |---|---|---|
 | Target AC | Level II | **11** |
 | To hit | d20 roll 11, +0 range, +1 single shot | **12** |
-| Rounds hit | Beats AC by 1 → half is 0.5, round down | **0** |
+| Rounds hit | Beats AC by 1 → half is 0.5, round down to 0, but a hit lands at least 1 | **1** |
+| Dice | 1d20 roll 9 | 9 |
+| Tier | 9x18mm is tier II, the same as the armor → remove 25% of 9 = 2.25, round up to 3 | 6 |
+| Prot | 22% of 6 = 1.32, round up to 2 removed | 4 |
+| Add | +2 velocity | **6** |
 
-**Total: 0 damage.** The roll beat the AC, but no rounds hit (assumption C).
-
-**Questions:**
-- Is this right, or should beating the AC always land at least 1 round?
-- What if the roll exactly equals the AC (12 vs. 12)?
+**Total: 6 damage.** A roll that exactly equals the AC (11 vs. 11) would also
+land 1 round.
 
 Correct? ☐ Yes ☐ No: _______________
 
@@ -211,17 +214,17 @@ Gas Mask** (no armor level, Phys Prot 25%).
 
 | Step | Work | Result |
 |---|---|---|
-| Target AC | A mask has no level, so the target counts as unarmored (assumption G) | **10** |
+| Target AC | A mask has no level, so AC is the unarmored 10 (assumption G) | **10** |
 | To hit | d20 roll 10, +2 CQB, +1 single shot | **13** |
 | Rounds hit | Beats AC by 3 → half is 1 | **1** |
 | Dice | 4d20 rolls 11 + 5 + 18 + 7 | 41 |
-| Armor | Counts as unarmored: no tier step, and the mask's Prot is ignored | 41 |
-| Extras | +2 velocity, +4 hollow-point | **47** |
+| Tier | No armor level, so no tier step | 41 |
+| Prot | Mask 25% of 41 = 10.25, round up to 11 removed | 30 |
+| Extras | +2 velocity, +4 hollow-point | **36** |
 
-**Total: 47 damage.**
+**Total: 36 damage.**
 
-**Questions:**
-- Should the mask's 25% Phys Prot reduce this damage, even though it gives no AC?
+**Question:**
 - Do shotguns have any special rules (pellets, spread, damage dropping off with
   range)?
 
@@ -282,7 +285,7 @@ Correct? ☐ Yes ☐ No: _______________
 
 ---
 
-## Example 10: AP rounds vs. several armor pieces, ammo below the armor's level
+## Example 10: AP rounds vs. several armor pieces, ammo below the armor's level (updated: Prot adds up)
 
 **Setup:** HK416A5 (5.56x45mm, velocity 3, Rnd AP 4), **AP rounds**, one trigger
 pull of **10 rounds** (full auto) at **200m**. The target wears **PSZ-9D Duty Armor** (level IV, Phys
@@ -294,21 +297,21 @@ Prot 70%), a **Sphere M20 Helmet** (level IIIA) and a **GP-5 Gas Mask**.
 | To hit | d20 roll 17, +0 range, −1 full auto | **16** |
 | Rounds hit | Beats AC by 5 → half is 2 | **2 of 10** |
 
-5.56x45mm is tier III, below the armor's IV, so dice damage is halved. The AP
-damage is added afterward and is not halved.
+5.56x45mm is tier III, below the armor's IV, so dice damage is halved. Prot is
+70% + 50% (helmet) + 25% (mask) = **145%**, which removes all dice damage. The
+velocity and AP damage are added afterward and are not reduced.
 
-| Round | Dice (2d20) | Halve (round up) | Prot 70% (round up) | +3 velocity, +4 AP |
+| Round | Dice (2d20) | Halve (round up) | Prot 145% | +3 velocity, +4 AP |
 |---|---|---|---|---|
-| 1 | 13 + 9 = 22 | 11 | 11 − 8 = 3 | **10** |
-| 2 | 6 + 15 = 21 | 11 | 11 − 8 = 3 | **10** |
+| 1 | 13 + 9 = 22 | 11 | 0 | **7** |
+| 2 | 6 + 15 = 21 | 11 | 0 | **7** |
 
-**Total: 20 damage.**
+**Total: 14 damage.**
 
-**Questions:**
-- The helmet and mask add nothing here (assumption E). Should they, for
-  example through hit location or by adding their Prot?
-- Without AP rounds, the AC is 15, the roll beats it by only 1, and **no** rounds
-  hit. Is that the intended gap between normal and AP rounds?
+**Question:**
+- Without AP rounds, the AC is 15 and the roll beats it by only 1, so 1 round
+  hits for 0 dice + 3 velocity = **3 damage**. Is that the intended gap between
+  normal and AP rounds?
 
 Correct? ☐ Yes ☐ No: _______________
 
