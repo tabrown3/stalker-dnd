@@ -39,6 +39,8 @@ export interface RuleSettings {
     lmg: number;
     lmgClasses: string[];
   };
+  /** CONFIRMED (2026-11-27): a target wears at most one piece per slot. Values are armor types. */
+  armorSlots: { head: string[]; body: string[] };
   /** CONFIRMED: a hit lands at least this many rounds. */
   minRoundsOnHit: number;
   /** GUESS: which protection column applies to bullets. */
@@ -58,6 +60,10 @@ export const DEFAULT_SETTINGS: RuleSettings = {
   },
   unmountedPenalty: { classes: ["GPMG"], mod: -2 },
   turnCaps: { singleShot: 6, automatic: 30, lmg: 40, lmgClasses: ["LMG"] },
+  armorSlots: {
+    head: ["Mask", "Helmet"],
+    body: ["Body Armor", "Full Body Armor", "Protective Suit", "Exoskeleton"],
+  },
   minRoundsOnHit: 1,
   protColumn: "phys",
   apDamageVsUnarmored: true,

@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { Dataset } from "../src/data/schema.ts";
-import { AttackError, rangeModFor, resolveTurn, type AttackInput } from "../src/engine/attack.ts";
+import { AttackError, damageDiceOf, previewHits, rangeModFor, resolveTurn, type AttackInput } from "../src/engine/attack.ts";
 import { randomRoller, scriptedRoller } from "../src/engine/dice.ts";
 import { DEFAULT_SETTINGS, type RuleSettings } from "../src/engine/settings.ts";
 
@@ -116,10 +116,10 @@ describe("worked examples", () => {
     expect(r.pulls[0]).toMatchObject({ fireMode: "auto", toHit: 14 });
   });
 
-  it("10: AP rounds vs. several pieces, Prot adds past 100%", () => {
-    const sc = { weapon: "HK416A5", variant: "ap" as const, armor: ["PSZ-9D Duty Armor", "Sphere M20 Helmet", "GP-5 Gas Mask"], distanceM: 200, pulls: [10] };
+  it("10: AP rounds vs. body and head pieces, Prot adds past 100%", () => {
+    const sc = { weapon: "HK416A5", variant: "ap" as const, armor: ["PSZ-9D Duty Armor", "Sphere M20 Helmet"], distanceM: 200, pulls: [10] };
     const r = run(sc, [17, 13, 9, 6, 15]);
-    expect(r).toMatchObject({ armorLevel: "IV", effectiveAc: 11, protPercent: 145 });
+    expect(r).toMatchObject({ armorLevel: "IV", effectiveAc: 11, protPercent: 120 });
     expect(r.pulls[0]!.rounds.map((x) => [x.afterTier, x.afterProt, x.damage])).toEqual([
       [11, 0, 7],
       [11, 0, 7],
@@ -196,12 +196,31 @@ describe("attack limits", () => {
     expect(attempt({ weapon: "PKM", distanceM: 10, pulls: [31] })).toThrow(/at most 30/);
   });
 
+  it("allows one head piece and one body piece", () => {
+    expect(attempt({ weapon: "AK-74", armor: ["PSZ-5D", "GP-5 Gas Mask"], distanceM: 10, pulls: [1] })).not.toThrow();
+    expect(attempt({ weapon: "AK-74", armor: ["Sphere M20 Helmet", "GP-5 Gas Mask"], distanceM: 10, pulls: [1] })).toThrow(/one head piece/);
+    expect(attempt({ weapon: "AK-74", armor: ["PSZ-5D", "Exoskeleton"], distanceM: 10, pulls: [1] })).toThrow(/one body piece/);
+  });
+
   it("rejects bad input", () => {
     expect(attempt({ weapon: "AK-74", distanceM: 10, pulls: [] })).toThrow(AttackError);
     expect(attempt({ weapon: "AK-74", distanceM: 10, pulls: [0] })).toThrow(AttackError);
     expect(attempt({ weapon: "AK-74", distanceM: -1, pulls: [1] })).toThrow(AttackError);
     const wrongAmmo = { ...input({ weapon: "AK-74", distanceM: 10, pulls: [1] }), ammo: data.ammo[1]! };
     expect(() => resolveTurn(wrongAmmo, { tables: data.tables, ammoVariants: data.ammoVariants, roll: randomRoller })).toThrow(/fires 5-45x39mm/);
+  });
+});
+
+describe("entered dice", () => {
+  it("previewHits gives the same hits as resolveTurn, so the UI knows which dice to ask for", () => {
+    const sc: Scenario = { weapon: "Glock-17", armor: ["Sunrise Suit"], distanceM: 15, pulls: [1, 1, 1] };
+    const ctx = { tables: data.tables, ammoVariants: data.ammoVariants };
+    const preview = previewHits(input(sc), [16, 9, 19], ctx);
+    expect(preview.pulls.map((p) => p.roundsHit)).toEqual([1, 0, 1]);
+    expect(damageDiceOf(input(sc).ammo)).toEqual([20]);
+    expect(run(sc, [16, 18, 9, 19, 7]).pulls.map((p) => p.roundsHit)).toEqual([1, 0, 1]);
+    expect(damageDiceOf(input({ weapon: "AK-74", distanceM: 1, pulls: [1] }).ammo)).toEqual([20, 10]);
+    expect(() => previewHits(input(sc), [16], ctx)).toThrow(/Need 3 d20/);
   });
 });
 

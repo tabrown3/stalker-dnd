@@ -62,6 +62,8 @@ My assumptions. **Please check these especially:**
 - **E. Which Prot:** *(decided)* the Prot % of every worn piece is added
   together, masks included, with no cap. Bullets use the **Phys Prot** column.
 - **F. Prot rounding:** the amount Prot removes rounds up, like the 25% rule.
+- **Armor slots:** *(decided)* one body piece and one head piece (a mask or a
+  helmet).
 - **G. Masks and AC:** masks have no armor level, so a target wearing only a
   mask has AC 10 and gets no tier step, but the mask's Prot still applies.
 - **H. "Beyond range"** means beyond the weapon's **max** range (the second
@@ -285,11 +287,12 @@ Correct? ☐ Yes ☐ No: _______________
 
 ---
 
-## Example 10: AP rounds vs. several armor pieces, ammo below the armor's level (updated: Prot adds up)
+## Example 10: AP rounds vs. body and head armor, ammo below the armor's level (updated: Prot adds up, two slots)
 
 **Setup:** HK416A5 (5.56x45mm, velocity 3, Rnd AP 4), **AP rounds**, one trigger
 pull of **10 rounds** (full auto) at **200m**. The target wears **PSZ-9D Duty Armor** (level IV, Phys
-Prot 70%), a **Sphere M20 Helmet** (level IIIA) and a **GP-5 Gas Mask**.
+Prot 70%) and a **Sphere M20 Helmet** (level IIIA, Phys Prot 50%). A target
+wears at most one body piece and one head piece (a mask or a helmet).
 
 | Step | Work | Result |
 |---|---|---|
@@ -298,10 +301,10 @@ Prot 70%), a **Sphere M20 Helmet** (level IIIA) and a **GP-5 Gas Mask**.
 | Rounds hit | Beats AC by 5 → half is 2 | **2 of 10** |
 
 5.56x45mm is tier III, below the armor's IV, so dice damage is halved. Prot is
-70% + 50% (helmet) + 25% (mask) = **145%**, which removes all dice damage. The
+70% + 50% (helmet) = **120%**, which removes all dice damage. The
 velocity and AP damage are added afterward and are not reduced.
 
-| Round | Dice (2d20) | Halve (round up) | Prot 145% | +3 velocity, +4 AP |
+| Round | Dice (2d20) | Halve (round up) | Prot 120% | +3 velocity, +4 AP |
 |---|---|---|---|---|
 | 1 | 13 + 9 = 22 | 11 | 0 | **7** |
 | 2 | 6 + 15 = 21 | 11 | 0 | **7** |

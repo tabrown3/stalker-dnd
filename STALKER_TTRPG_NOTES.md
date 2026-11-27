@@ -2,8 +2,12 @@
 
 Working notes on a companion app for a friend's D&D-like tabletop adaptation of
 *S.T.A.L.K.E.R. 2: Heart of Chornobyl*. This file records my reading of the
-source material and the planning discussion so far. The data pipeline and the
-attack engine are built (2026-11-27); the app is not.
+source material and the planning discussion so far. The data pipeline, the
+attack engine and a first attack screen are built (2026-11-27).
+
+Commands: `npm run web` (app in a browser), `npm run build:web` (static site in
+`dist/`), `npm run data` (regenerate data from the CSV), `npm test`,
+`npm run typecheck`.
 The source is the Google Sheet "STALKER DND" (tab "Rules & Function", range
 A1:AM79), owned by the rules author and shared view-only. The tables below were
 first transcribed by hand from pasted CSV and checked cell by cell against a CSV
@@ -176,6 +180,9 @@ Clarifications from the user (2026-11-21):
 
 - **AC [CONFIRMED]:** the AC row (section 6) is the wearer's **total** AC:
   Base 10 (unarmored), II 11, IIIA 12, III 13, III+ 14, IV 15.
+- **Armor slots [CONFIRMED 2026-11-27]:** a target wears at most two pieces:
+  one **head** (Mask or Helmet, combos included) and one **body** (Body Armor,
+  Full Body Armor, Protective Suit or Exoskeleton).
 - **Multiple pieces [CONFIRMED, provisional]:** for now, the wearer's AC is the AC
   of their highest-level armor piece. AC does not stack.
 - **Ammo tier [CONFIRMED]:** each caliber's tier is the column it sits under in the
@@ -614,5 +621,11 @@ Next steps, in order:
    rules and guesses are labeled settings in `src/engine/settings.ts`. The 11
    worked examples are tests in `test/engine.test.ts`.
    `scripts/worked_examples.py` was the prototype and is superseded.
-4. Minimal UI (phase 3): pick attacker weapon, ammo, target armor, distance and
-   pulls; show the breakdown. Web first.
+4. ~~Minimal UI (phase 3).~~ **First version done** (2026-11-27): Expo SDK 58,
+   one Attack screen in `src/ui/`. Weapon, ammo variant, mounted (GPMGs),
+   body and head armor, distance in meters, trigger pulls; either the app rolls
+   or the user types physical rolls (d20s first, then exactly the damage dice
+   needed). The result shows every step. Nothing is shared between devices.
+   Dark olive/amber look.
+5. Next: publish the web build somewhere the table can open it, then
+   characters and inventory (phase 4).

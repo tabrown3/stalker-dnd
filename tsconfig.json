@@ -1,16 +1,11 @@
 {
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "target": "es2023",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "allowImportingTsExtensions": true,
     "erasableSyntaxOnly": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-    "skipLibCheck": true,
-    "types": ["node"]
+    "verbatimModuleSyntax": true
   },
-  "include": ["src", "scripts", "test"]
+  "include": ["index.ts", "src", "scripts", "test"]
 }
