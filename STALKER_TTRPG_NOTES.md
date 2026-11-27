@@ -627,5 +627,14 @@ Next steps, in order:
    or the user types physical rolls (d20s first, then exactly the damage dice
    needed). The result shows every step. Nothing is shared between devices.
    Dark olive/amber look.
-5. Next: publish the web build somewhere the table can open it, then
-   characters and inventory (phase 4).
+5. ~~Publish the web build.~~ **Done** (2026-11-27): GitHub Pages at
+   https://tabrown3.github.io/stalker-dnd/, deployed by
+   `.github/workflows/deploy.yml` on every push to main (tests must pass).
+6. ~~Debug export/import.~~ **Done** (v0.1.0): under a result, "Something look
+   wrong?" copies a one-line code (`ZC1:` + base64url JSON + `.`) with the app
+   version, build commit, a data fingerprint, the setup by ID, every roll and
+   the player's optional note. "Debug: import" at the bottom of the screen
+   decodes it, replays it on the current version, and says whether the answer
+   or the game data changed. Code: `src/debug/export.ts`. The version lives in
+   `src/version.ts`, `package.json` and `app.json` (a test keeps them equal).
+7. Next: characters and inventory (phase 4).

@@ -12,7 +12,6 @@ import {
   unmountedApplies,
   type AttackInput,
   type PullHit,
-  type RoundResult,
   type TurnResult,
 } from "../engine/attack.ts";
 import { randomRoller, scriptedRoller } from "../engine/dice.ts";
@@ -20,13 +19,14 @@ import { DEFAULT_SETTINGS } from "../engine/settings.ts";
 import { Button, Label, Mono, Note, NumberField, Row, Section, Segmented, SelectField, Toggle, type SelectOption } from "./components.tsx";
 import { ammoById, armorById, data, weaponById } from "./data.ts";
 import { blankDamageEntry, fillEmpty, orderedRolls, parseRoll } from "./entry.ts";
+import { ExportPanel } from "./ExportPanel.tsx";
+import { MODE_NAME, ResultView, signed } from "./ResultView.tsx";
+import { APP_VERSION } from "../version.ts";
 import { colors, mono, space } from "./theme.ts";
 
 const settings = DEFAULT_SETTINGS;
 const ctx = { tables: data.tables, ammoVariants: data.ammoVariants, settings };
 
-const signed = (n: number) => (n >= 0 ? `+${n}` : `−${-n}`);
-const MODE_NAME = { single: "single", burst: "burst", auto: "full auto" } as const;
 
 const weaponOptions: SelectOption[] = [...data.weapons]
   .sort((a, b) => a.class.localeCompare(b.class) || a.name.localeCompare(b.name))
@@ -42,9 +42,9 @@ const armorOptions = (slot: "head" | "body"): SelectOption[] => [
 const bodyOptions = armorOptions("body");
 const headOptions = armorOptions("head");
 
-type Phase = { kind: "setup" } | { kind: "d20"; d20s: string[] } | { kind: "damage"; d20s: string[]; hits: PullHit[]; damage: string[][][] } | { kind: "result"; result: TurnResult };
+type Phase = { kind: "setup" } | { kind: "d20"; d20s: string[] } | { kind: "damage"; d20s: string[]; hits: PullHit[]; damage: string[][][] } | { kind: "result"; result: TurnResult; input: AttackInput; rolledBy: "app" | "player"; id: number };
 
-export function AttackScreen() {
+export function AttackScreen({ onOpenImport }: { onOpenImport: () => void }) {
   const [weaponId, setWeaponId] = useState("ak-74");
   const [variant, setVariant] = useState<"normal" | "ap" | "hollow-point">("normal");
   const [mounted, setMounted] = useState(false);
@@ -106,7 +106,7 @@ export function AttackScreen() {
   const setup = check.setup;
   const totalRounds = parsedPulls.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0);
 
-  const rollForMe = () => setPhase({ kind: "result", result: resolveTurn(input, { ...ctx, roll: randomRoller }) });
+  const rollForMe = () => setPhase({ kind: "result", result: resolveTurn(input, { ...ctx, roll: randomRoller }), input, rolledBy: "app", id: Date.now() });
   const startEntry = () => setPhase({ kind: "d20", d20s: pulls.map(() => "") });
 
   return (
@@ -282,16 +282,25 @@ export function AttackScreen() {
         </Section>
       )}
 
-      {phase.kind === "result" && <ResultView result={phase.result} />}
+      {phase.kind === "result" && (
+        <ResultView result={phase.result}>
+          <ExportPanel key={phase.id} input={phase.input} result={phase.result} rolledBy={phase.rolledBy} />
+        </ResultView>
+      )}
 
-      <Note>Rules marked provisional or guessed in the notes are settings in src/engine/settings.ts.</Note>
+      <Row style={{ justifyContent: "space-between", marginTop: space.sm }}>
+        <Note>v{APP_VERSION}</Note>
+        <Text accessibilityRole="link" onPress={onOpenImport} style={styles.debugLink}>
+          Debug: import
+        </Text>
+      </Row>
     </ScrollView>
   );
 
   function finish(p: { d20s: string[]; damage: string[][][] }) {
     const rolls = orderedRolls(p.d20s, p.damage, diceSides);
     if (!rolls) return;
-    setPhase({ kind: "result", result: resolveTurn(input, { ...ctx, roll: scriptedRoller(rolls) }) });
+    setPhase({ kind: "result", result: resolveTurn(input, { ...ctx, roll: scriptedRoller(rolls) }), input, rolledBy: "player", id: Date.now() });
   }
 }
 
@@ -306,59 +315,11 @@ function rangeLabel(w: Weapon, mod: number): string {
   return `in range (max ${w.range.maxM}m) +0`;
 }
 
-const TIER_TEXT: Record<RoundResult["tierStep"], string> = {
-  unarmored: "no level",
-  lower: "½ lower tier",
-  equal: "−25% same tier",
-  higher: "full, higher tier",
-};
-
-function ResultView({ result }: { result: TurnResult }) {
-  return (
-    <Section title="RESULT">
-      <Row style={{ alignItems: "baseline" }}>
-        <Text style={styles.total}>{result.totalDamage}</Text>
-        <Text style={styles.totalUnit}>damage</Text>
-        <View style={{ flex: 1 }} />
-        <Mono style={{ color: colors.muted }}>
-          {result.roundsHit} of {result.roundsFired} rounds hit
-        </Mono>
-      </Row>
-      <Mono style={{ color: colors.muted }}>
-        AC {result.targetAc}
-        {result.ap > 0 && result.armorLevel ? ` − AP ${result.ap} = ${result.effectiveAc}` : ""} · Prot {result.protPercent}% · range {signed(result.rangeMod)}
-        {result.unmountedMod ? ` · unmounted ${signed(result.unmountedMod)}` : ""}
-      </Mono>
-      {result.pulls.map((p, i) => (
-        <View key={i} style={styles.pull}>
-          <Mono style={{ color: p.hit ? colors.text : colors.muted }}>
-            Pull {i + 1} · {p.roundsFired} rd{p.roundsFired === 1 ? "" : "s"} {MODE_NAME[p.fireMode]}: d20 {p.d20} {signed(result.rangeMod)} range {signed(p.fireModeMod)} mode
-            {result.unmountedMod ? ` ${signed(result.unmountedMod)} unmounted` : ""} = {p.toHit} vs {result.effectiveAc} →{" "}
-            {p.hit ? `beats by ${p.margin}, ${p.roundsHit} hit` : "miss"}
-          </Mono>
-          {p.rounds.map((r, k) => (
-            <Mono key={k} style={styles.round}>
-              {`  R${k + 1}  ${r.dice.join("+")}=${r.diceTotal} → ${TIER_TEXT[r.tierStep]} ${r.afterTier} → Prot −${r.protRemoved} = ${r.afterProt} → +${r.velocity} vel${
-                r.hollowPoint ? ` +${r.hollowPoint} HP` : ""
-              }${r.ap ? ` +${r.ap} AP` : ""} = `}
-              <Text style={{ color: colors.amber, fontWeight: "700" }}>{r.damage}</Text>
-            </Mono>
-          ))}
-          {p.roundsMissed > 0 && <Note>{p.roundsMissed} missed (suppression)</Note>}
-        </View>
-      ))}
-    </Section>
-  );
-}
-
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   content: { padding: space.lg, width: "100%", maxWidth: 680, alignSelf: "center" },
   title: { color: colors.amber, fontFamily: mono, fontSize: 20, letterSpacing: 6, fontWeight: "700", marginBottom: space.md },
   unit: { color: colors.muted, fontSize: 13 },
   pullLabel: { color: colors.text, fontSize: 14, width: 52 },
-  total: { color: colors.amber, fontFamily: mono, fontSize: 44, fontWeight: "700" },
-  totalUnit: { color: colors.muted, fontSize: 15 },
-  pull: { borderTopColor: colors.border, borderTopWidth: 1, paddingTop: space.sm, gap: space.xs },
-  round: { color: colors.text },
+  debugLink: { color: colors.muted, fontSize: 12, textDecorationLine: "underline" },
 });
